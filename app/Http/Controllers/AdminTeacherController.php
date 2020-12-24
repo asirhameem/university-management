@@ -4,92 +4,44 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Student;
+use App\Teacher;
 use App\message;
 use App\warning;
 
 use Illuminate\Support\Facades\DB;
 
-class AdminStudentController extends Controller
+class AdminTeacherController extends Controller
 {
     
-	function studentshow(){
-        $user = User::where('type', '1')
+	function teachershow(){
+        $user = User::where('type', '2')
 					->get();
-		return view('admin.student')->with('users', $user);
+		return view('admin.teacher')->with('users', $user);
     }
-    function studentinfo($id){
+    function teacherinfo($id){
       $user = User::where('uid', $id)
 					->get();
-	    $student = Student::where('uid', $id)
+	    $teacher = Teacher::where('uid', $id)
        
 					->get();
-		return view('admin.studentinfo')->with('users', $user)->with('students', $student);
+		return view('admin.teacherinfo')->with('users', $user)->with('teachers', $teacher);
 
     
 	}
-	function studentedit($id)
-	{
-		$user = User::where('uid', $id)
-		->get();
-  		$student = Student::where('uid', $id)
-       
-          ->get();
-    return view('admin.studentupdate')->with('users', $user)->with('students', $student);
-	}
 
-
-	function studentupdate(Request $request, $id)
-	{
-
-    $request->validate([
-      'cgpa'=>'required',
-      'department'=>'required',
-      'dob'=>'required',
-      'admission_date'=>'required',
-      'student_status'=>'required'
-        ]);
-		
-   Student::where('uid', $id)->update(['cgpa' => $request->cgpa,
-    'department' => $request->department,
-    'dob' => $request->dob,
-    'admission_date' => $request->admission_date,
-    'student_status' => $request->student_status
-  ]);
-
-		return redirect()->route('student.info', $id);
-
-  
-  }
-
-   function studentdelete($id)
-  {
-         $user = User::find($id);
-
-        if($user->delete()){
-            $deletedRows = $user::where('uid', $id )->delete();
-            return redirect()->route('adminhome.studentshow');
-        }else{
-            return redirect()->route('student.info',$id);
-        }
-    }
-
-
-    
-
-    function fetch(Request $request)
+  function fetch(Request $request)
     {
      if($request->get('query'))
      {
       $query = $request->get('query');
       $data = DB::table('user')
         ->where('name', 'LIKE', "%{$query}%")
-        ->where('type' , 1)
+        ->where('type' , 2)
         ->get();
       $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
       foreach($data as $row)
       {
-        $url = route('student.info', $row->uid);
+        $url = route('teacher.info', $row->uid);
        $output .= '
        <li><a href="'.$url.'">'.$row->name.'</a></li>
        ';
@@ -99,13 +51,68 @@ class AdminStudentController extends Controller
      }
 }
 
-function studentmessage($id)
+	function teacheredit($id)
+	{
+		$user = User::where('uid', $id)
+		->get();
+  		$teacher = Teacher::where('uid', $id)
+       
+          ->get();
+    return view('admin.teacherupdate')->with('users', $user)->with('teachers', $teacher);
+	}
+
+
+	function teacherupdate(Request $request, $id)
+	{
+
+    $request->validate([
+      'department'=>'required',
+      'designation'=>'required',
+      'salary'=>'required',
+      'joindate'=>'required',
+      'address'=>'required',
+      'gender'=>'required',
+      'phone'=>'required'
+        ]);
+		
+   Teacher::where('uid', $id)->update(['department' => $request->department,
+    'designation' => $request->department,
+    'salary' => $request->salary,
+    'joindate' => $request->joindate,
+    'address' => $request->address,
+    'gender' => $request->gender,
+    'phone' => $request->phone
+  ]);
+
+		return redirect()->route('teacher.info', $id);
+
+  
+  }
+
+   function teacherdelete($id)
+  {
+         $user = User::find($id);
+
+        if($user->delete()){
+            $deletedRows = $user::where('uid', $id )->delete();
+            return redirect()->route('adminhome.teachershow');
+        }else{
+            return redirect()->route('teacher.info',$id);
+        }
+    }
+
+
+    
+
+    
+
+function teachermessage($id)
   {
     $user = User::where('uid', $id)
     ->get();
     return view('admin.message')->with('users', $user);
     }
-    function studentsend(Request $request, $id)
+    function teachersend(Request $request, $id)
   {
         $adminid= session()->get('uid');
 
@@ -123,13 +130,13 @@ function studentmessage($id)
 
 
     
-    function studentwarn($id)
+    function teacherwarn($id)
 	{
 		$user = User::where('uid', $id)
 		->get();
 		return view('admin.warning')->with('users', $user);
     }
-    function studentwarning(Request $request, $id)
+    function teacherwarning(Request $request, $id)
 	{
         $adminid = session()->get('uid');
        

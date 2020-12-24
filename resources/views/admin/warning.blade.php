@@ -60,11 +60,11 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Others</a>
                 <div class="dropdown-menu">
-                  <a href="{{route('adminhome.feedback')}}" class="dropdown-item">Feedbacks</a>
+                  <a href="{{route('adminhome.course')}}" class="dropdown-item">All Course</a>
                   <a href="{{route('adminhome.message')}}" class="dropdown-item">Messages</a>
-                  <a href="{{route('adminhome.history')}}" class="dropdown-item">User History</a>
-                  <a href="{{route('adminhome.warning')}}" class="dropdown-item">Warnings</a>
-                  <a href="{{route('adminhome.transaction')}}" class="dropdown-item">Transaction</a>
+                   <a href="{{route('adminhome.warning')}}" class="dropdown-item">Notice</a>
+                  <a href="{{route('adminhome.library')}}" class="dropdown-item">Library</a>
+                 <a href="{{route('adminhome.financials')}}" class="dropdown-item">Financials</a>
                 </div>
               </div>
             </div>
@@ -84,7 +84,7 @@
         <div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <span class="subheading"></span>
-            <h2 class="mb-2"> Warning message for {{ $users[0]->username }}  </h2>
+            <h2 class="mb-2"> Notice  for {{ $users[0]->name }}  </h2>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@
 
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Warning Message</label>
+                                                <label style="font-weight:bold;">Notice Message</label>
                                             </div>
                                             <div class="col-md-8 col-6"> <input type="text" name="warning" value="">
                                             <br> {{$errors->first('warning')}} 

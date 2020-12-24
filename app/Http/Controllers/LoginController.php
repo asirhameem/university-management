@@ -43,6 +43,8 @@ class LoginController extends Controller
         if(count($uid) > 0 && $usertype==4)
         {
             $request->session()->put('email', $request->input('email'));
+             $request->session()->put('username', $request->input('username'));
+            
             $request->session()->put('uid', $uid[0]->uid);
             
                 return redirect()->route('adminhome.index');
@@ -51,7 +53,9 @@ class LoginController extends Controller
         else{
 
             $request->session()->flash('msg', 'invalid email/password');
-            echo("invalid");
+            
+            
+            return redirect('/login');
 
         }
     }

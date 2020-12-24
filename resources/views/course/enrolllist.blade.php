@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Warning </title>
+    <title>Enroll List </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -44,10 +44,9 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Userlist</a>
                 <div class="dropdown-menu">
-                   <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
-                   <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
+                  <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
+                  <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
                    <a href="{{route('adminhome.employeeshow')}}" class="dropdown-item">Employee</a>
-                                   
                 </div>
               </div>
             </div>
@@ -59,7 +58,7 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Others</a>
                 <div class="dropdown-menu">
-                   <a href="{{route('adminhome.course')}}" class="dropdown-item">All Course</a>
+                  <a href="{{route('adminhome.course')}}" class="dropdown-item">All Course</a>
                   <a href="{{route('adminhome.message')}}" class="dropdown-item">Messages</a>
                    <a href="{{route('adminhome.warning')}}" class="dropdown-item">Notice</a>
                   <a href="{{route('adminhome.library')}}" class="dropdown-item">Library</a>
@@ -76,60 +75,54 @@
     </div>
   </nav>
     <!-- END nav -->
-    
-   
- <section class="ftco-section ftco-no-pb">
+    <section class="ftco-section ftco-no-pb">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <span class="subheading"></span>
-            <h2 class="mb-2">Notice </h2>
+            <h2 class="mb-2">Enroll List </h2>
           </div>
         </div>
       </div>
     </section>
 
+    <table class="table table-striped table-hover" id="userTable">
+              <a id="dlink"  style="display:none;"></a>
+              
+                <thead class="thead-dark">
+                    <tr>
+                        <th> Enroll ID</th>
+                        <th> Course ID</th>
+                        <th>Teacher ID</th>
+                        <th>Student ID</th>
+                     
+                        <th>Course Grade</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                  @for($i=0; $i < count($enrolls); $i++)
+                       
+                            <tr id="data-row">
+                              <td>{{$enrolls[$i]['enid']}}</td>
+                              <td>{{$enrolls[$i]['courseid ']}}</td> 
+                              <td>{{$enrolls[$i]['instructorid ']}}</td>
+                              <td>{{$enrolls[$i]['sid ']}}</td>
+                              <td>{{$enrolls[$i]['grade']}}</td>
+                                 
+                                
+                               
+                                <td>
+                                  
+                                   
+                                </td>
+                                  @endfor
+                            </tr>
+                       
+                </tbody>
+            </table>
 
-   <div class="list-group" align="center" >
-    <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-      <table align="center">
-     
-     <tr>
 
-
-
-      <th> <div class="col-sm-3 col-md-2 col-5">
-          <label style="font-weight:bold;">Users</label>
-      </div></th> 
-
-
-
-     <th> <div class="col-sm-3 col-md-2 col-5">
-        <label style="font-weight:bold;">Notice</label>
-    </div>
-      </th> 
-
-
-      </tr>
-    <hr />
-    @for($i=0; $i< count($user); $i++)
-      <tr>
-
-        <td> <div class="col-md-8 col-6">
-              {{$user[$i]->username }}
-         </div></td>
-     
-   
-     
-     <td> <div class="col-md-8 col-6">
-     {{$user[$i]->warning }}
-      </div></td>
-
-</tr> 
-
- @endfor
-</div>
-</div>
 
 <script src="/js/jquery.min.js"></script>
   <script src="/js/jquery-migrate-3.0.1.min.js"></script>

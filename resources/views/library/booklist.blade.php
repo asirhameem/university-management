@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Warning </title>
+    <title>Book List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -44,10 +44,9 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Userlist</a>
                 <div class="dropdown-menu">
-                   <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
-                   <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
+                  <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
+                  <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
                    <a href="{{route('adminhome.employeeshow')}}" class="dropdown-item">Employee</a>
-                                   
                 </div>
               </div>
             </div>
@@ -59,7 +58,7 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Others</a>
                 <div class="dropdown-menu">
-                   <a href="{{route('adminhome.course')}}" class="dropdown-item">All Course</a>
+                  <a href="{{route('adminhome.course')}}" class="dropdown-item">All Course</a>
                   <a href="{{route('adminhome.message')}}" class="dropdown-item">Messages</a>
                    <a href="{{route('adminhome.warning')}}" class="dropdown-item">Notice</a>
                   <a href="{{route('adminhome.library')}}" class="dropdown-item">Library</a>
@@ -76,58 +75,51 @@
     </div>
   </nav>
     <!-- END nav -->
-    
-   
- <section class="ftco-section ftco-no-pb">
+
+    <div class="hero-wrap ftco-degree-bg" style="background-image: url('/images/student.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text justify-content-center align-items-center">
+          
+            <div class="text text-center">
+              <h1 class="mb-4"> <br>Welcome home Admin  </h1>
+             
+            </div>
+
+        </div>
+      </div>
+      <div class="mouse">
+        <a href="#" class="mouse-icon">
+          <div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
+        </a>
+      </div>
+    </div> 
+     <section class="ftco-section ftco-no-pb">
+   <div class="col-md-3">
+      
+      
+      <a href="{{route('book.add')}}"  class="list-group-item list-group-item-action"><button class="btn btn-lg btn-success" type="button" id="btnaddcourse"><i class="glyphicon glyphicon-ok-sign"></i> Add Book</button> <br> </a>
+
+       <a href="{{route('book.borrow')}}"  class="list-group-item list-group-item-action"><button class="btn btn-lg btn-success" type="button" id="btnaddcourse"><i class="glyphicon glyphicon-ok-sign"></i> Borrow List</button> <br> </a>
+</div>
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <span class="subheading"></span>
-            <h2 class="mb-2">Notice </h2>
+            <h2 class="mb-2">Book List </h2>
           </div>
         </div>
       </div>
+      
     </section>
 
 
+    
    <div class="list-group" align="center" >
     <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-      <table align="center">
-     
-     <tr>
-
-
-
-      <th> <div class="col-sm-3 col-md-2 col-5">
-          <label style="font-weight:bold;">Users</label>
-      </div></th> 
-
-
-
-     <th> <div class="col-sm-3 col-md-2 col-5">
-        <label style="font-weight:bold;">Notice</label>
-    </div>
-      </th> 
-
-
-      </tr>
-    <hr />
-    @for($i=0; $i< count($user); $i++)
-      <tr>
-
-        <td> <div class="col-md-8 col-6">
-              {{$user[$i]->username }}
-         </div></td>
-     
-   
-     
-     <td> <div class="col-md-8 col-6">
-     {{$user[$i]->warning }}
-      </div></td>
-
-</tr> 
-
- @endfor
+    @foreach($librarys as $library)
+  <a href="{{ route('adminhome.bookinfo', $library->lid) }}" class="list-group-item list-group-item-action"><h4>{{$library->book_name}}</h4> <br> </a>
+ @endforeach
 </div>
 </div>
 

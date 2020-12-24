@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Admin Profile </title>
+    <title>Teacher INFO </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -44,11 +44,9 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Userlist</a>
                 <div class="dropdown-menu">
-                   <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
+                  <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
                   <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
                    <a href="{{route('adminhome.employeeshow')}}" class="dropdown-item">Employee</a>
-                 
-                 
                 </div>
               </div>
             </div>
@@ -78,34 +76,14 @@
   </nav>
     <!-- END nav -->
     
-    <div class="hero-wrap ftco-degree-bg" style="background-image: url('/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text justify-content-center align-items-center">
-          
-            <div class="text text-center">
-              <h1 class="mb-4"> <br>Your profile </h1>
-
-             
-            </div>
-          
-        </div>
-      </div>
-      <div class="mouse">
-        <a href="#" class="mouse-icon">
-          <div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
-        </a>
-      </div>
-    </div> 
+    
 
      <section class="ftco-section ftco-no-pb">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <span class="subheading"></span>
-
-              <h2 class="mb-2"> Admin Name : {{ $users[0]->name }} </h2>
-            
+            <h2 class="mb-2"> Teacher -- {{$users[0]->name}} </h2>
           </div>
         </div>
       </div>
@@ -116,29 +94,38 @@
 
 
 <div class="row">
-       
+@foreach($users as $user)
                             <div class="col-12">
                                
                                 <div class="tab-content ml-1" id="myTabContent">
                                     <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
                                         
-
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Full Name</label>
+                                                <label style="font-weight:bold;">UserId</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                            {{ $users[0]->name }}
+                                            {{$users[0]->uid}} 
                                             </div>
                                         </div>
                                         <hr />
 
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Full Name</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $users[0]->name}}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                         <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Email</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                            {{ $users[0]->email }}
+                                            {{ $users[0]->email}}
                                             </div>
                                         </div>
                                         <hr />
@@ -149,7 +136,7 @@
                                                 <label style="font-weight:bold;">Username</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                            {{ $users[0]->username }}
+                                            {{ $users[0]->username}}
                                             </div>
                                         </div>
                                         <hr />
@@ -158,7 +145,7 @@
                                                 <label style="font-weight:bold;">Password</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                            {{ $users[0]->password }}
+                                            {{ $users[0]->password}}
                                             </div>
                                         </div>
                                         <hr />
@@ -167,30 +154,104 @@
                                                 <label style="font-weight:bold;">status</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                            {{ $users[0]->status }}
+                                            {{ $users[0]->status}}
                                             </div>
                                         </div>
                                         <hr />
-                                           
+
+                                       
+                                           <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Department</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $teachers[0]->department}}  
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Designation</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $teachers[0]->designation}}  
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Salary</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $teachers[0]->salary}}  
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                         <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Join Date </label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $teachers[0]->joindate}}  
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                         <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Address </label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $teachers[0]->address}}  
+                                            </div>
+                                        </div>
+                                        <hr />
+                                         <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Gender </label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $teachers[0]->gender}}  
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                         <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Phone </label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $teachers[0]->phone}}  
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                       
                                     </div>
                                    
                                 </div>
                             </div>
+                            @endforeach
                         </div>
 
-                        
-          
-                        <div class="col-md-6">
-                           <a href="{{route('adminhome.edit')}}" class="list-group-item list-group-item-action"><h4>Update</h4> <br> </a>
-                              
-                        </div>
-                   
-                    </div>
+
+                    
+    
 
    
-    
+   
+    <div class="col-md-6">
+      <a href="{{ route('teacher.edit', $users[0]->uid) }} " class="list-group-item list-group-item-action"><h4>Update</h4> </a>
+      <a href=" {{ route('teacher.delete', $users[0]->uid) }}" class="list-group-item list-group-item-action"><h4>Disable</h4> <br> </a>
+       <a href="{{ route('teacher.message', $users[0]->uid) }}" class="list-group-item list-group-item-action"><h4>Message</h4> <br> </a>
+        <a href="{{ route('teacher.warn', $users[0]->uid) }} " class="list-group-item list-group-item-action"><h4>Notice</h4>  </a>
+     
 </div>
-
+</div>
+</div>
 
 <script src="/js/jquery.min.js"></script>
   <script src="/js/jquery-migrate-3.0.1.min.js"></script>

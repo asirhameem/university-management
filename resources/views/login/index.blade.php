@@ -38,8 +38,10 @@
       <input type="submit" class="btn btn-primary btn-block btn-lg" name="submit" value="Login">
 
     </form>
+    <div style="color: red">{{session('msg')}} </div>
    
   </div>
+
 </body>
 
 </html>

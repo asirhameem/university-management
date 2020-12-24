@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Warning </title>
+    <title>Library INFO </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -44,10 +44,9 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Userlist</a>
                 <div class="dropdown-menu">
-                   <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
-                   <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
+                  <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
+                  <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
                    <a href="{{route('adminhome.employeeshow')}}" class="dropdown-item">Employee</a>
-                                   
                 </div>
               </div>
             </div>
@@ -59,7 +58,7 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Others</a>
                 <div class="dropdown-menu">
-                   <a href="{{route('adminhome.course')}}" class="dropdown-item">All Course</a>
+                  <a href="{{route('adminhome.course')}}" class="dropdown-item">All Course</a>
                   <a href="{{route('adminhome.message')}}" class="dropdown-item">Messages</a>
                    <a href="{{route('adminhome.warning')}}" class="dropdown-item">Notice</a>
                   <a href="{{route('adminhome.library')}}" class="dropdown-item">Library</a>
@@ -77,57 +76,94 @@
   </nav>
     <!-- END nav -->
     
-   
- <section class="ftco-section ftco-no-pb">
+    
+
+     <section class="ftco-section ftco-no-pb">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <span class="subheading"></span>
-            <h2 class="mb-2">Notice </h2>
+            <h2 class="mb-2"> Book -- {{$librarys[0]->book_name}} </h2>
           </div>
         </div>
       </div>
     </section>
 
-
-   <div class="list-group" align="center" >
-    <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-      <table align="center">
-     
-     <tr>
+    <div class="list-group" align="center" >
+    
 
 
+<div class="row">
+@foreach($librarys as $library)
+                            <div class="col-12">
+                               
+                                <div class="tab-content ml-1" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Book ID</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{$librarys[0]-> lid}} 
+                                            </div>
+                                        </div>
+                                        <hr />
 
-      <th> <div class="col-sm-3 col-md-2 col-5">
-          <label style="font-weight:bold;">Users</label>
-      </div></th> 
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Book Name</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $librarys[0]->book_name }}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Quantity</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $librarys[0]->quantity }}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                         <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Available Quantity</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $librarys[0]->available }}
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        
+                                        
+                                        
+                                       
+
+                                       
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
 
 
+                    
+    
 
-     <th> <div class="col-sm-3 col-md-2 col-5">
-        <label style="font-weight:bold;">Notice</label>
-    </div>
-      </th> 
-
-
-      </tr>
-    <hr />
-    @for($i=0; $i< count($user); $i++)
-      <tr>
-
-        <td> <div class="col-md-8 col-6">
-              {{$user[$i]->username }}
-         </div></td>
-     
    
+   
+    <div class="col-md-6">
+      <a href="{{ route('book.edit', $librarys[0]->lid) }} " class="list-group-item list-group-item-action"><h4>Update</h4> </a>
+      <a href=" {{ route('book.delete', $librarys[0]->lid) }}" class="list-group-item list-group-item-action"><h4>Disable</h4> <br> </a>
+      
      
-     <td> <div class="col-md-8 col-6">
-     {{$user[$i]->warning }}
-      </div></td>
-
-</tr> 
-
- @endfor
+</div>
 </div>
 </div>
 

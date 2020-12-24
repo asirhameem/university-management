@@ -12,3 +12,4 @@ class logoutController extends Controller
     	return redirect('/login');
     }
 }
+

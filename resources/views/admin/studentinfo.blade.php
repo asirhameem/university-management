@@ -58,11 +58,11 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Others</a>
                 <div class="dropdown-menu">
-                  <a href="{{route('adminhome.feedback')}}" class="dropdown-item">Feedbacks</a>
+                  <a href="{{route('adminhome.course')}}" class="dropdown-item">All Course</a>
                   <a href="{{route('adminhome.message')}}" class="dropdown-item">Messages</a>
-                  <a href="{{route('adminhome.history')}}" class="dropdown-item">User History</a>
-                  <a href="{{route('adminhome.warning')}}" class="dropdown-item">Warnings</a>
-                  <a href="{{route('adminhome.transaction')}}" class="dropdown-item">Transaction</a>
+                   <a href="{{route('adminhome.warning')}}" class="dropdown-item">Notice</a>
+                  <a href="{{route('adminhome.library')}}" class="dropdown-item">Library</a>
+                 <a href="{{route('adminhome.financials')}}" class="dropdown-item">Financials</a>
                 </div>
               </div>
             </div>
@@ -228,7 +228,7 @@
       <a href="{{ route('student.edit', $users[0]->uid) }} " class="list-group-item list-group-item-action"><h4>Update</h4> </a>
       <a href=" {{ route('student.delete', $users[0]->uid) }}" class="list-group-item list-group-item-action"><h4>Disable</h4> <br> </a>
        <a href="{{ route('student.message', $users[0]->uid) }}" class="list-group-item list-group-item-action"><h4>Message</h4> <br> </a>
-        <a href="{{ route('student.warn', $users[0]->uid) }} " class="list-group-item list-group-item-action"><h4>Warning</h4>  </a>
+        <a href="{{ route('student.warn', $users[0]->uid) }} " class="list-group-item list-group-item-action"><h4>Notice</h4>  </a>
      
 </div>
 </div>

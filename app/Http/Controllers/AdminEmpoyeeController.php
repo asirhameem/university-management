@@ -4,92 +4,43 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Student;
+use App\Employee;
 use App\message;
 use App\warning;
 
 use Illuminate\Support\Facades\DB;
 
-class AdminStudentController extends Controller
+class AdminEmpoyeeController extends Controller
 {
     
-	function studentshow(){
-        $user = User::where('type', '1')
+	function employeeshow(){
+        $user = User::where('type', '3')
 					->get();
-		return view('admin.student')->with('users', $user);
+		return view('admin.employee')->with('users', $user);
     }
-    function studentinfo($id){
+    function employeeinfo($id){
       $user = User::where('uid', $id)
 					->get();
-	    $student = Student::where('uid', $id)
+	    $employee = Employee::where('uid', $id)
        
 					->get();
-		return view('admin.studentinfo')->with('users', $user)->with('students', $student);
+		return view('admin.employeeinfo')->with('users', $user)->with('employees', $employee);
 
     
 	}
-	function studentedit($id)
-	{
-		$user = User::where('uid', $id)
-		->get();
-  		$student = Student::where('uid', $id)
-       
-          ->get();
-    return view('admin.studentupdate')->with('users', $user)->with('students', $student);
-	}
-
-
-	function studentupdate(Request $request, $id)
-	{
-
-    $request->validate([
-      'cgpa'=>'required',
-      'department'=>'required',
-      'dob'=>'required',
-      'admission_date'=>'required',
-      'student_status'=>'required'
-        ]);
-		
-   Student::where('uid', $id)->update(['cgpa' => $request->cgpa,
-    'department' => $request->department,
-    'dob' => $request->dob,
-    'admission_date' => $request->admission_date,
-    'student_status' => $request->student_status
-  ]);
-
-		return redirect()->route('student.info', $id);
-
-  
-  }
-
-   function studentdelete($id)
-  {
-         $user = User::find($id);
-
-        if($user->delete()){
-            $deletedRows = $user::where('uid', $id )->delete();
-            return redirect()->route('adminhome.studentshow');
-        }else{
-            return redirect()->route('student.info',$id);
-        }
-    }
-
-
-    
-
-    function fetch(Request $request)
+   function fetch(Request $request)
     {
      if($request->get('query'))
      {
       $query = $request->get('query');
       $data = DB::table('user')
         ->where('name', 'LIKE', "%{$query}%")
-        ->where('type' , 1)
+        ->where('type' , 3)
         ->get();
       $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
       foreach($data as $row)
       {
-        $url = route('student.info', $row->uid);
+        $url = route('employee.info', $row->uid);
        $output .= '
        <li><a href="'.$url.'">'.$row->name.'</a></li>
        ';
@@ -99,13 +50,69 @@ class AdminStudentController extends Controller
      }
 }
 
-function studentmessage($id)
+	function employeeedit($id)
+	{
+		$user = User::where('uid', $id)
+		->get();
+  		$employee = Employee::where('uid', $id)
+       
+          ->get();
+    return view('admin.employeeupdate')->with('users', $user)->with('employees', $employee);
+	}
+
+
+	function employeeupdate(Request $request, $id)
+	{
+
+    $request->validate([
+      'gender'=>'required',
+     'department'=>'required',
+      'address'=>'required',
+      'designation'=>'required',
+       'joindate'=>'required',
+       'phone'=>'required',
+      'salary'=>'required'
+    
+        ]);
+		
+   Employee::where('uid', $id)->update(['gender' => $request->gender,
+    'department' => $request->department,
+    'address' => $request->address,
+    'designation' => $request->designation,
+    'joindate' => $request->joindate,
+     'phone' => $request->phone,
+    'salary' => $request->salary
+  ]);
+
+		return redirect()->route('employee.info', $id);
+
+  
+  }
+
+   function employeedelete($id)
+  {
+         $user = User::find($id);
+
+        if($user->delete()){
+            $deletedRows = $user::where('uid', $id )->delete();
+            return redirect()->route('adminhome.employeeshow');
+        }else{
+            return redirect()->route('employee.info',$id);
+        }
+    }
+
+
+    
+
+   
+
+function employeemessage($id)
   {
     $user = User::where('uid', $id)
     ->get();
     return view('admin.message')->with('users', $user);
     }
-    function studentsend(Request $request, $id)
+    function employeesend(Request $request, $id)
   {
         $adminid= session()->get('uid');
 
@@ -123,13 +130,13 @@ function studentmessage($id)
 
 
     
-    function studentwarn($id)
+    function employeewarn($id)
 	{
 		$user = User::where('uid', $id)
 		->get();
 		return view('admin.warning')->with('users', $user);
     }
-    function studentwarning(Request $request, $id)
+    function employeewarning(Request $request, $id)
 	{
         $adminid = session()->get('uid');
        

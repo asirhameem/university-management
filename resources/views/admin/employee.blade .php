@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Warning </title>
+    <title>Employee List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-    
+  {{csrf_field()}}
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="#">University Management System</a>
@@ -77,57 +77,60 @@
   </nav>
     <!-- END nav -->
     
-   
+    <div class="hero-wrap ftco-degree-bg" style="background-image: url('/images/student.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text justify-content-center align-items-center">
+          
+          	<div class="text text-center">
+	            <h1 class="mb-4"> <br>Welcome home Admin  </h1>
+	           
+            </div>
+
+        </div>
+      </div>
+      <div class="mouse">
+				<a href="#" class="mouse-icon">
+					<div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span></div>
+				</a>
+			</div>
+    </div> 
+
  <section class="ftco-section ftco-no-pb">
+   <div class="col-md-3">
+      
+      
+      <a href="{{route('student.add')}}"  class="list-group-item list-group-item-action"><button class="btn btn-lg btn-success" type="button" id="btnaddcourse"><i class="glyphicon glyphicon-ok-sign"></i> Add Employee</button> <br> </a>
+</div>
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <span class="subheading"></span>
-            <h2 class="mb-2">Notice </h2>
+            <h2 class="mb-2">Employee List </h2>
           </div>
         </div>
       </div>
+      <form method="post" action="../admin/employee" class="search-location mt-md-5">
+          <div class="row justify-content-center">
+            <div class="col-lg-10 align-items-end">
+            <div class="form-group">
+              <div class="active-purple-3 active-purple-4 mb-4">
+                <input type="text" class="form-control form-control-sm ml-3 w-75" placeholder="Search Employee" name="search" id="search">
+                <div id="searchlist"> </div>
+              </div>
+              @csrf
+            </div>
+            </div>
+          </div>
+        </form>
     </section>
 
 
    <div class="list-group" align="center" >
     <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-      <table align="center">
-     
-     <tr>
-
-
-
-      <th> <div class="col-sm-3 col-md-2 col-5">
-          <label style="font-weight:bold;">Users</label>
-      </div></th> 
-
-
-
-     <th> <div class="col-sm-3 col-md-2 col-5">
-        <label style="font-weight:bold;">Notice</label>
-    </div>
-      </th> 
-
-
-      </tr>
-    <hr />
-    @for($i=0; $i< count($user); $i++)
-      <tr>
-
-        <td> <div class="col-md-8 col-6">
-              {{$user[$i]->username }}
-         </div></td>
-     
-   
-     
-     <td> <div class="col-md-8 col-6">
-     {{$user[$i]->warning }}
-      </div></td>
-
-</tr> 
-
- @endfor
+    @foreach($users as $user)
+  <a href="{{ route('employee.info', $user->uid) }}" class="list-group-item list-group-item-action"><h4>{{$user->name}}</h4> <br> </a>
+ @endforeach
 </div>
 </div>
 
@@ -151,3 +154,31 @@
 
   </body>
   </html>
+
+   <script>
+$(document).ready(function(){
+
+ $('#search').keyup(function(){ 
+        var query = $(this).val();
+        if(query != '')
+        {
+         var _token = $('input[name="_token"]').val();
+         $.ajax({
+          url:"{{ route('employee.search') }}",
+          method:"POST",
+          data:{query:query, _token:_token},
+          success:function(data){
+           $('#searchlist').fadeIn();  
+                    $('#searchlist').html(data);
+          }
+         });
+        }
+    });
+
+    $(document).on('click', 'li', function(){  
+        $('#search').val($(this).text());  
+        $('#searchlist').fadeOut();  
+    });  
+
+});
+</script>

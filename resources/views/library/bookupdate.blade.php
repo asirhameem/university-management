@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Warning </title>
+    <title>Update Book </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-    
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
       <a class="navbar-brand" href="#">University Management System</a>
@@ -44,10 +43,9 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Userlist</a>
                 <div class="dropdown-menu">
-                   <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
-                   <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
+                  <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
+                  <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
                    <a href="{{route('adminhome.employeeshow')}}" class="dropdown-item">Employee</a>
-                                   
                 </div>
               </div>
             </div>
@@ -78,58 +76,88 @@
     <!-- END nav -->
     
    
- <section class="ftco-section ftco-no-pb">
+     <section class="ftco-section ftco-no-pb">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <span class="subheading"></span>
-            <h2 class="mb-2">Notice </h2>
+            <h2 class="mb-2">  {{ $librarys[0]->book_name}}  </h2>
           </div>
         </div>
       </div>
     </section>
 
+    <div class="list-group" align="center" >
+    
 
-   <div class="list-group" align="center" >
-    <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-      <table align="center">
-     
-     <tr>
+<form method="post">
+@csrf
+<div class="row">
+       
+                            <div class="col-12">
+                               
+                                <div class="tab-content ml-1" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
+                                        
 
+                                    
 
+                                       
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Book Name</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                    <input type="text" name="book_name" value="{{$librarys[0]->book_name}}">
+                                                     <br> {{$errors->first('book_name')}}
+                                                    
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Quantity</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                    <input type="text" name="quantity" value="{{$librarys[0]->quantity}}">
+                                                     <br> {{$errors->first('quantity')}}
+                                                    
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Available Quantity</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                    <input type="text" name="available" value="{{$librarys[0]->available}}">
+                                                     <br> {{$errors->first('available')}}
+                                                    
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        
 
-      <th> <div class="col-sm-3 col-md-2 col-5">
-          <label style="font-weight:bold;">Users</label>
-      </div></th> 
+                                       
+                                          
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
 
+                        
+          
+                        <div class="col-md-6">
+                                <input type="submit" name="submit" value="Update">
+                        </div>
+                   
+                    </div>
 
-
-     <th> <div class="col-sm-3 col-md-2 col-5">
-        <label style="font-weight:bold;">Notice</label>
-    </div>
-      </th> 
-
-
-      </tr>
-    <hr />
-    @for($i=0; $i< count($user); $i++)
-      <tr>
-
-        <td> <div class="col-md-8 col-6">
-              {{$user[$i]->username }}
-         </div></td>
-     
    
-     
-     <td> <div class="col-md-8 col-6">
-     {{$user[$i]->warning }}
-      </div></td>
-
-</tr> 
-
- @endfor
+    
 </div>
-</div>
+</form>
 
 <script src="/js/jquery.min.js"></script>
   <script src="/js/jquery-migrate-3.0.1.min.js"></script>

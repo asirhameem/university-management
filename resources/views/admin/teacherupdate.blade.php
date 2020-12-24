@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>update Profile</title>
+    <title>Update Teacher </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -27,10 +27,9 @@
     <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-    
-      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-          <div class="container">
-             <a class="navbar-brand" href="#">University Management System</a>
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="#">University Management System</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
         aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
@@ -44,46 +43,45 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Userlist</a>
                 <div class="dropdown-menu">
-                   <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
-                   <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
+                  <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
+                  <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
                    <a href="{{route('adminhome.employeeshow')}}" class="dropdown-item">Employee</a>
-                 
                 </div>
               </div>
             </div>
           </li>
           <li class="nav-item"><a href="{{route('adminhome.profile')}}" class="nav-link">Profile</a></li>
-               
-                <li class="nav-item">
-                  <div class="bs-example">
-                    <div class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Others</a>
-                      <div class="dropdown-menu">
-                    <a href="{{route('adminhome.course')}}" class="dropdown-item">All Course</a>
+         
+          <li class="nav-item">
+            <div class="bs-example">
+              <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Others</a>
+                <div class="dropdown-menu">
+                  <a href="{{route('adminhome.course')}}" class="dropdown-item">All Course</a>
                   <a href="{{route('adminhome.message')}}" class="dropdown-item">Messages</a>
                    <a href="{{route('adminhome.warning')}}" class="dropdown-item">Notice</a>
                   <a href="{{route('adminhome.library')}}" class="dropdown-item">Library</a>
-                 <a href="{{route('adminhome.financials')}}" class="dropdown-item">Financials</a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-               
-                <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
-      
-              </ul>
+                 <a href="{{route('adminhome.financials')}}" class="dropdown-item">Financials</a>>
+                </div>
+              </div>
             </div>
-          </div>
-        </nav>
+          </li>
+         
+          <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
     <!-- END nav -->
     
-  
+   
      <section class="ftco-section ftco-no-pb">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <span class="subheading"></span>
-            <h2 class="mb-2"> Admin Name : {{ $users[0]->name }} </h2>
+            <h2 class="mb-2">  {{ $users[0]->name}}  </h2>
           </div>
         </div>
       </div>
@@ -102,23 +100,24 @@
                                     <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
                                         
 
+                                    
+
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Full Name</label>
                                             </div>
-                                            <div class="col-md-8 col-6"><input type="text" name="name" value="{{ $users[0]->name }} ">
-                                           <br> {{$errors->first('name')}}
+                                            <div class="col-md-8 col-6">
+                                            {{ $users[0]->name }}
                                             </div>
                                         </div>
                                         <hr />
 
-                                        <div class="row">
+                                       <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Email</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                    <input type="text" name="email" value="{{ $users[0]->email }} ">
-                                                    <br> {{$errors->first('email')}}
+                                            {{ $users[0]->email }}
                                             </div>
                                         </div>
                                         <hr />
@@ -129,33 +128,98 @@
                                                 <label style="font-weight:bold;">Username</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                    <input type="text" name="username" value="{{ $users[0]->username }} ">
-                                                    <br> {{$errors->first('username')}}
+                                            {{ $users[0]->username }}
                                             </div>
                                         </div>
                                         <hr />
-
-                                         <div class="row">
+                                        <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
                                                 <label style="font-weight:bold;">Password</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                    <input type="text" name="password" value="{{ $users[0]->password }} ">
-                                                    <br> {{$errors->first('password')}}
+                                            {{ $users[0]->password }}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+
+                                           <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Department</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                    <input type="text" name="department" value="{{$teachers[0]->department}}">
+                                                     <br> {{$errors->first('department')}}
+                                                    
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Designation</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                    <input type="text" name="designation" value="{{$teachers[0]->designation}}">
+                                                    
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Salary</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                    <input type="text" name="salary" value="{{$teachers[0]->salary}}">
+                                                    
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Join Date</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                    <input type="text" name="joindate" value="{{$teachers[0]->joindate}}">
+                                                    
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Address</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                    <input type="text" name="address" value="{{$teachers[0]->address}}">
+                                                    
+                                            </div>
+                                        </div>
+                                        <hr />
+                                         <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Gender</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                    <input type="text" name="gender" value="{{$teachers[0]->gender}}">
+                                                    
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Phone</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                                    <input type="text" name="phone" value="{{$teachers[0]->phone}}">
+                                                    
                                             </div>
                                         </div>
                                         <hr />
                                         
-                                           <div class="row">
-                                            <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Status</label>
-                                            </div>
-                                            <div class="col-md-8 col-6">
-                                                    <input type="text" name="status" value="{{ $users[0]->status }} ">
-                                                    <br> {{$errors->first('status')}}
-                                            </div>
-                                        </div>
-                                        <hr />
+
+                                       
+                                          
                                     </div>
                                    
                                 </div>
@@ -165,7 +229,7 @@
                         
           
                         <div class="col-md-6">
-                                <input type="submit" name="submit" value="Save">
+                                <input type="submit" name="submit" value="Update">
                         </div>
                    
                     </div>

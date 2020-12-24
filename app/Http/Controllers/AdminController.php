@@ -9,8 +9,20 @@ use Illuminate\Support\Facades\DB;
 class AdminController extends Controller
 {
     
-	function index(){
-		return view('adminhome.index');
+	function index(Request $req){
+
+		if($req->session()->has('uid')){
+
+			return view('adminhome.index', ['uid'=> $req->session()->get('uid')]);
+
+		
+	}else{
+		 $req->session()->flash('msg', 'invalid request');
+		return redirect('/login');
+	}
+
+
+		
     }
     
     

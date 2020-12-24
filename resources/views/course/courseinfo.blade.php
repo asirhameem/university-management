@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>update Profile</title>
+    <title>Course INFO </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -28,9 +28,9 @@
   </head>
   <body>
     
-      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-          <div class="container">
-             <a class="navbar-brand" href="#">University Management System</a>
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="#">University Management System</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
         aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
@@ -44,46 +44,46 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Userlist</a>
                 <div class="dropdown-menu">
-                   <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
-                   <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
+                  <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
+                  <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
                    <a href="{{route('adminhome.employeeshow')}}" class="dropdown-item">Employee</a>
-                 
                 </div>
               </div>
             </div>
           </li>
           <li class="nav-item"><a href="{{route('adminhome.profile')}}" class="nav-link">Profile</a></li>
-               
-                <li class="nav-item">
-                  <div class="bs-example">
-                    <div class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Others</a>
-                      <div class="dropdown-menu">
-                    <a href="{{route('adminhome.course')}}" class="dropdown-item">All Course</a>
+         
+          <li class="nav-item">
+            <div class="bs-example">
+              <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Others</a>
+                <div class="dropdown-menu">
+                  <a href="{{route('adminhome.course')}}" class="dropdown-item">All Course</a>
                   <a href="{{route('adminhome.message')}}" class="dropdown-item">Messages</a>
                    <a href="{{route('adminhome.warning')}}" class="dropdown-item">Notice</a>
                   <a href="{{route('adminhome.library')}}" class="dropdown-item">Library</a>
                  <a href="{{route('adminhome.financials')}}" class="dropdown-item">Financials</a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-               
-                <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
-      
-              </ul>
+                </div>
+              </div>
             </div>
-          </div>
-        </nav>
+          </li>
+         
+          <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
     <!-- END nav -->
     
-  
+    
+
      <section class="ftco-section ftco-no-pb">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <span class="subheading"></span>
-            <h2 class="mb-2"> Admin Name : {{ $users[0]->name }} </h2>
+            <h2 class="mb-2"> Course -- {{$courses[0]->cname}} </h2>
           </div>
         </div>
       </div>
@@ -92,88 +92,110 @@
     <div class="list-group" align="center" >
     
 
-<form method="post">
-@csrf
+
 <div class="row">
-       
+@foreach($courses as $course)
                             <div class="col-12">
                                
                                 <div class="tab-content ml-1" id="myTabContent">
                                     <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
                                         
-
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Full Name</label>
+                                                <label style="font-weight:bold;">Course ID</label>
                                             </div>
-                                            <div class="col-md-8 col-6"><input type="text" name="name" value="{{ $users[0]->name }} ">
-                                           <br> {{$errors->first('name')}}
+                                            <div class="col-md-8 col-6">
+                                            {{$courses[0]-> cid}} 
                                             </div>
                                         </div>
                                         <hr />
 
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Email</label>
+                                                <label style="font-weight:bold;">Course Name</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                    <input type="text" name="email" value="{{ $users[0]->email }} ">
-                                                    <br> {{$errors->first('email')}}
+                                            {{ $courses[0]->  cname }}
                                             </div>
                                         </div>
                                         <hr />
-                                        
-                                        
+
                                         <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Username</label>
+                                                <label style="font-weight:bold;">Course Description</label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                    <input type="text" name="username" value="{{ $users[0]->username }} ">
-                                                    <br> {{$errors->first('username')}}
+                                            {{ $courses[0]->cdescription }}
                                             </div>
                                         </div>
                                         <hr />
 
                                          <div class="row">
                                             <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Password</label>
+                                                <label style="font-weight:bold;">Course Teacher </label>
                                             </div>
                                             <div class="col-md-8 col-6">
-                                                    <input type="text" name="password" value="{{ $users[0]->password }} ">
-                                                    <br> {{$errors->first('password')}}
+                                            {{ $courses[0]->cteacher  }}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Class Start</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $courses[0]->cstart }}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                        <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Class End</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $courses[0]->cend }}
+                                            </div>
+                                        </div>
+                                        <hr />
+
+                                         <div class="row">
+                                            <div class="col-sm-3 col-md-2 col-5">
+                                                <label style="font-weight:bold;">Course Pic</label>
+                                            </div>
+                                            <div class="col-md-8 col-6">
+                                            {{ $courses[0]->cpic }}
                                             </div>
                                         </div>
                                         <hr />
                                         
-                                           <div class="row">
-                                            <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Status</label>
-                                            </div>
-                                            <div class="col-md-8 col-6">
-                                                    <input type="text" name="status" value="{{ $users[0]->status }} ">
-                                                    <br> {{$errors->first('status')}}
-                                            </div>
-                                        </div>
-                                        <hr />
+                                        
+                                        
+                                       
+
+                                       
                                     </div>
                                    
                                 </div>
                             </div>
+                            @endforeach
                         </div>
 
-                        
-          
-                        <div class="col-md-6">
-                                <input type="submit" name="submit" value="Save">
-                        </div>
-                   
-                    </div>
+
+                    
+    
 
    
-    
+   
+    <div class="col-md-6">
+      <a href="{{ route('course.edit', $courses[0]->cid) }} " class="list-group-item list-group-item-action"><h4>Update</h4> </a>
+      <a href=" {{ route('course.delete', $courses[0]->cid) }}" class="list-group-item list-group-item-action"><h4>Disable</h4> <br> </a>
+      
+     
 </div>
-</form>
+</div>
+</div>
 
 <script src="/js/jquery.min.js"></script>
   <script src="/js/jquery-migrate-3.0.1.min.js"></script>
