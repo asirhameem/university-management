@@ -107,6 +107,8 @@ function studentmessage($id)
     }
     function studentsend(Request $request, $id)
   {
+
+    
         $adminid= session()->get('uid');
 
         
@@ -131,6 +133,11 @@ function studentmessage($id)
     }
     function studentwarning(Request $request, $id)
 	{
+
+    $request->validate([
+      
+      'warning'=>'required'
+        ]);
         $adminid = session()->get('uid');
        
         $user = new warning();

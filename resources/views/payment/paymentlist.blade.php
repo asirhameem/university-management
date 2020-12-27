@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Send Warning </title>
+    <title>Payment List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -28,9 +28,9 @@
   </head>
   <body>
     
-      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-          <div class="container">
-             <a class="navbar-brand" href="#">University Management System</a>
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="#">University Management System</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
         aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="oi oi-menu"></span> Menu
@@ -44,11 +44,9 @@
               <div class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Userlist</a>
                 <div class="dropdown-menu">
-                   <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
+                  <a href="{{route('adminhome.studentshow')}}" class="dropdown-item">Student</a>
                   <a href="{{route('adminhome.teachershow')}}" class="dropdown-item">Teacher</a>
                    <a href="{{route('adminhome.employeeshow')}}" class="dropdown-item">Employee</a>
-                 
-                 
                 </div>
               </div>
             </div>
@@ -77,62 +75,51 @@
     </div>
   </nav>
     <!-- END nav -->
-   
-
-     <section class="ftco-section ftco-no-pb">
+    <section class="ftco-section ftco-no-pb">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <span class="subheading"></span>
-            <h2 class="mb-2"> Notice  for {{ $users[0]->name }}  </h2>
+            <h2 class="mb-2">Payment List </h2>
+             <h2><a href="{{ url('adminhome/financials/pdf') }}" class="btn btn-danger">Convert into PDF</a></h2>
           </div>
         </div>
       </div>
+    
     </section>
 
-    <div class="list-group" align="center" >
-    
+    <table class="table table-striped table-hover" id="userTable">
+              <a id="dlink"  style="display:none;"></a>
+              
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Payment ID</th>
+                        <th>Student ID</th>
+                        <th>Payment Ammount</th>
+                        <th>Payment Date</th>
+                     
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                 @foreach($payment as $payments)
+                       
+                            <tr id="data-row">
+                              <td>{{$payments->pid}}</td>
+                              <td>{{$payments->sid}}</td>
+                              <td>{{$payments->pamount}}</td>
+                              <td>{{$payments->pdate}}</td>
 
-<form method="post">
-@csrf
-<div class="row">
-       
-                            <div class="col-12">
                                
-                                <div class="tab-content ml-1" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="basicInfo" role="tabpanel" aria-labelledby="basicInfo-tab">
-                                        
+                               <td>
+                             </td>
+                                   @endforeach
+                            </tr>
+                       
+                </tbody>
+            </table>
 
-                                        <div class="row">
-                                            <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Notice Message</label>
-                                            </div>
-                                            <div class="col-md-8 col-6"> <input type="text" name="warning" value="">
-                                           <br><div style="color: red"> {{$errors->first('warning')}}</div>
-                                            </div>
-                                        </div>
-                                        <hr />
 
-                                        
-                                      
-                                    </div>
-                                   
-                                </div>
-                            </div>
-                        </div>
-
-                        
-          
-                        <div class="col-md-6">
-                                <input type="submit" name="submit" value="Send">
-                        </div>
-                   
-                    </div>
-
-   
-    
-</div>
-</form>
 
 <script src="/js/jquery.min.js"></script>
   <script src="/js/jquery-migrate-3.0.1.min.js"></script>

@@ -9,6 +9,9 @@ use App\Library;
 use App\Borrow;
 use App\Course;
 use App\Enroll;
+use App\Payment;
+use PDF;
+
 
 use Illuminate\Support\Facades\DB;
 
@@ -92,7 +95,14 @@ function library(){
 
      
 public function store(Request $request){
+      
 
+      $request->validate([
+      
+      'book_name'=>'required',
+       'quantity'=>'required',
+        'available'=>'required'
+        ]);
                  $library = new Library();
                 $library->book_name= $request->book_name;
                 $library->quantity= $request->quantity;
@@ -106,12 +116,7 @@ public function store(Request $request){
 
 }
 
-function borrowlist(){
-        
-        $borrow = Borrow::all();
-                   
-        return view('library.borrowlist')->with('borrows', $borrow);
-}
+
 
 
    
@@ -181,14 +186,112 @@ function borrowlist(){
         return view('course.enrolllist')->with('enrolls', $enroll);
 }
 
-    
+function borrowlist(){
+        
+       /* $borrow = Borrow::all();
+                   
+        return view('library.borrowlist')->with('borrows', $borrow);*/
+         $borrow = $this->get_borrow_data();
+         return view('library.borrowlist')->with('borrow', $borrow);
+}
+function get_borrow_data()
+    {
+     $borrow = DB::table('borrow')
+         
+         ->get();
+     return $borrow;
+    }
+
+     function borrowpdf()
+    {
+     $pdf = \App::make('dompdf.wrapper');
+     $pdf->loadHTML($this->convert_borrow_data_to_html());
+     return $pdf->stream();
+    }
+
+     function convert_borrow_data_to_html()
+    {
+      $borrow = $this->get_borrow_data();
+     $output =' <h3 align="center">Borrow List</h3>
+     <table width="100%" style="border-collapse: collapse; border: 0px;">
+      <tr>
+    <th style="border: 1px solid; padding:12px;" width="20%"> Borrow ID</th>
+    <th style="border: 1px solid; padding:12px;" width="30%">Book ID</th>
+    <th style="border: 1px solid; padding:12px;" width="15%">Book Name</th>
+    <th style="border: 1px solid; padding:12px;" width="15%">Borrow Date</th>
+    <th style="border: 1px solid; padding:12px;" width="15%">Return Date</th>
+    <th style="border: 1px solid; padding:12px;" width="15%">Student ID</th>
+   
+   </tr>
+     ';
+      foreach($borrow as $borrows)
+     {
+      $output .=' <tr>
+       <td style="border: 1px solid; padding:12px;">'.$borrows->bid.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$borrows->lid.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$borrows->bookname.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$borrows->bdate.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$borrows->rdate.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$borrows->sid.'</td>
+       
+      </tr>
+      ';}
+      $output .= '</table>';
+     return $output;
+    }
+
 
 function financials(){
-    $user = DB::table('account')
-        ->join('user', 'account.cid', '=', 'user.userid')
-        ->join('service', 'account.serviceid', '=', 'service.serviceid')
-        ->select('account.*', 'user.username', 'service.servicename')
-        ->get();
-    return view('history.transaction')->with('user', $user);
+        
+       
+         $payment = $this->get_customer_data();
+         return view('payment.paymentlist')->with('payment', $payment);
 }
+
+function get_customer_data()
+    {
+     $payment = DB::table('payment')
+         
+         ->get();
+     return $payment;
+    }
+
+    function pdf()
+    {
+     $pdf = \App::make('dompdf.wrapper');
+     $pdf->loadHTML($this->convert_customer_data_to_html());
+     return $pdf->stream();
+    }
+
+    function convert_customer_data_to_html()
+    {
+      $payment = $this->get_customer_data();
+     $output =' <h3 align="center">Payment List</h3>
+     <table width="100%" style="border-collapse: collapse; border: 0px;">
+      <tr>
+    <th style="border: 1px solid; padding:12px;" width="20%">Payment ID</th>
+    <th style="border: 1px solid; padding:12px;" width="30%">Student ID</th>
+    <th style="border: 1px solid; padding:12px;" width="15%">Payment Ammount</th>
+    <th style="border: 1px solid; padding:12px;" width="15%">Payment Date</th>
+   
+   </tr>
+     ';
+      foreach($payment as $payments)
+     {
+      $output .=' <tr>
+       <td style="border: 1px solid; padding:12px;">'.$payments->pid.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$payments->sid.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$payments->pamount.'</td>
+       <td style="border: 1px solid; padding:12px;">'.$payments->pdate.'</td>
+       
+      </tr>
+      ';}
+      $output .= '</table>';
+     return $output;
+    }
+
+
+
+
+
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Library INFO </title>
+    <title>Borrow List</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -81,6 +81,7 @@
           <div class="col-md-12 heading-section text-center ftco-animate mb-5">
             <span class="subheading"></span>
             <h2 class="mb-2">Borrow List </h2>
+             <h2><a href="{{ url('admin/borrowlist/pdf') }}" class="btn btn-danger">Convert into PDF</a>
           </div>
         </div>
       </div>
@@ -101,16 +102,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                  @for($i=0; $i < count($borrows); $i++)
+                  
+                  @foreach($borrow as $borrows)
                        
                             <tr id="data-row">
-                              <td>{{$borrows[$i]['bid']}}</td>
-                               <td>{{$borrows[$i]['lid']}}</td> 
-                               <td>{{$borrows[$i]['bookname']}}</td>
-                               
-                                 <td>{{$borrows[$i]['bdate']}}</td>
-                                  <td>{{$borrows[$i]['rdate']}}</td>
-                                   <td>{{$borrows[$i]['sid']}}</td>
+                               <td>{{$borrows->bid}}</td>
+                                <td>{{$borrows->lid}}</td>
+                                 <td>{{$borrows->bookname}}</td>
+                                  <td>{{$borrows->bdate}}</td>
+                                   <td>{{$borrows->rdate}}</td>
+                                    <td>{{$borrows->sid}}</td>
+
+
+
                                 
                                 
                                
@@ -118,7 +122,7 @@
                                   
                                    
                                 </td>
-                                  @endfor
+                                 @endforeach
                             </tr>
                        
                 </tbody>

@@ -90,53 +90,38 @@
     </section>
 
 
-   <div class="list-group" align="center" >
-    <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-      <table align="center">
-     
-     <tr>
-
-       <th><div class="col-sm-3 col-md-2 col-5">
-            <label style="font-weight:bold;">Sender</label>
-        </div> </th>
-
-      <th> <div class="col-sm-3 col-md-2 col-5">
-          <label style="font-weight:bold;">Receiver</label>
-      </div></th> 
+  
 
 
+  <table class="table table-striped table-hover" id="userTable">
+              <a id="dlink"  style="display:none;"></a>
+              
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Sender</th>
+                        <th>Receiver</th>
+                        <th>Messages</th>
+                       
+                     
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                  @for($i=0; $i < count($user); $i++)
+                       
+                            <tr id="data-row">
+                              <td>{{$user[$i]['senderid']}}</td>
+                               <td>{{$user[$i]['receiverid']}}</td> 
+                               <td>{{$user[$i]['msgbody']}}</td>
+                               
+                               <td>
+                             </td>
+                                  @endfor
+                            </tr>
+                       
+                </tbody>
+            </table>
 
-     <th> <div class="col-sm-3 col-md-2 col-5">
-        <label style="font-weight:bold;">Messages</label>
-    </div>
-      </th> 
-
-
-      </tr>
-    <hr />
-    @for($i=0; $i< count($user); $i++)
-      <tr>
-
-        <td> <div class="col-md-8 col-6">
-              {{$user[$i]->senderid }}
-         </div></td>
-     
-   
-     
-     <td> <div class="col-md-8 col-6">
-     {{$user[$i]->receiverid }}
-      </div></td>
-
- <td> 
-    <div class="col-md-8 col-6">
-    {{$user[$i]->msgbody }}
-    </div>
-  </td>
-</tr> 
-
- @endfor
-</div>
-</div>
 
 <script src="/js/jquery.min.js"></script>
   <script src="/js/jquery-migrate-3.0.1.min.js"></script>

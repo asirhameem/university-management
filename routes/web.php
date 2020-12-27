@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', 'LoginController@index')->name('login.index');
+Route::get('/login', 'LoginController@index')->name('login.index')->middleware('iptest');
 Route::post('/login', 'LoginController@verify');
 
 Route::get('/logout', 'LogoutController@index')->name('logout.index');
@@ -32,6 +32,8 @@ Route::get('/adminhome/messages', 'HistoryController@message')->name('adminhome.
 Route::get('/adminhome/warnings', 'HistoryController@warning')->name('adminhome.warning');
 
 Route::get('/adminhome/financials', 'HistoryController@financials')->name('adminhome.financials');
+Route::get('/adminhome/financials/pdf', 'HistoryController@pdf');
+
 
 
 Route::get('/adminhome/library', 'HistoryController@library')->name('adminhome.library');
@@ -43,6 +45,7 @@ Route::get('/admin/addbook', 'HistoryController@addbook')->name('book.add');
 Route::post('/admin/addbook', 'HistoryController@store');
 
 Route::get('/admin/borrowlist', 'HistoryController@borrowlist')->name('book.borrow');
+Route::get('/admin/borrowlist/pdf', 'HistoryController@borrowpdf');
 
 
 Route::get('/adminhome/course', 'HistoryController@course')->name('adminhome.course');

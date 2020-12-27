@@ -138,6 +138,11 @@ function employeemessage($id)
     }
     function employeewarning(Request $request, $id)
 	{
+
+    $request->validate([
+      
+      'warning'=>'required'
+        ]);
         $adminid = session()->get('uid');
        
         $user = new warning();

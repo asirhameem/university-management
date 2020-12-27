@@ -76,7 +76,7 @@ class AdminTeacherController extends Controller
         ]);
 		
    Teacher::where('uid', $id)->update(['department' => $request->department,
-    'designation' => $request->department,
+    'designation' => $request->designation,
     'salary' => $request->salary,
     'joindate' => $request->joindate,
     'address' => $request->address,
@@ -138,6 +138,11 @@ function teachermessage($id)
     }
     function teacherwarning(Request $request, $id)
 	{
+
+     $request->validate([
+      
+      'warning'=>'required'
+        ]);
         $adminid = session()->get('uid');
        
         $user = new warning();

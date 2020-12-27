@@ -149,7 +149,7 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                     <input type="text" name="cgpa" value="{{$students[0]->cgpa}}">
-                                                     <br> {{$errors->first('cgpa')}}
+                                                   <br> {{$errors->first('cgpa')}}
                                                     
                                             </div>
                                         </div>
@@ -160,6 +160,7 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                     <input type="text" name="department" value="{{$students[0]->department}}">
+                                                    <br> {{$errors->first('department')}}
                                                     
                                             </div>
                                         </div>
@@ -170,6 +171,7 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                     <input type="text" name="dob" value="{{$students[0]->dob}}">
+                                                    <br> {{$errors->first('dob')}}
                                                     
                                             </div>
                                         </div>
@@ -180,6 +182,7 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                     <input type="text" name="admission_date" value="{{$students[0]->admission_date}}">
+                                                    <br> {{$errors->first('admission_date')}}
                                                     
                                             </div>
                                         </div>
@@ -190,6 +193,7 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                     <input type="text" name="student_status" value="{{$students[0]->student_status}}">
+                                                    <br> {{$errors->first('student_status')}}
                                                     
                                             </div>
                                         </div>

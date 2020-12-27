@@ -149,7 +149,7 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                     <input type="text" name="department" value="{{$teachers[0]->department}}">
-                                                     <br> {{$errors->first('department')}}
+                                                     <br><div style="color: red"> {{$errors->first('department')}}</div>
                                                     
                                             </div>
                                         </div>
@@ -160,6 +160,7 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                     <input type="text" name="designation" value="{{$teachers[0]->designation}}">
+                                                     <br><div style="color: red"> {{$errors->first('designation')}}</div>
                                                     
                                             </div>
                                         </div>
@@ -170,6 +171,7 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                     <input type="text" name="salary" value="{{$teachers[0]->salary}}">
+                                                     <br><div style="color: red"> {{$errors->first('salary')}}</div>
                                                     
                                             </div>
                                         </div>
@@ -180,6 +182,7 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                     <input type="text" name="joindate" value="{{$teachers[0]->joindate}}">
+                                                   <br><div style="color: red"> {{$errors->first('joindate')}}</div>
                                                     
                                             </div>
                                         </div>
@@ -190,6 +193,7 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                     <input type="text" name="address" value="{{$teachers[0]->address}}">
+                                                    <br><div style="color: red"> {{$errors->first('address')}}</div>
                                                     
                                             </div>
                                         </div>
@@ -200,6 +204,7 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                     <input type="text" name="gender" value="{{$teachers[0]->gender}}">
+                                                     <br><div style="color: red"> {{$errors->first('gender')}}</div>
                                                     
                                             </div>
                                         </div>
@@ -212,6 +217,7 @@
                                             </div>
                                             <div class="col-md-8 col-6">
                                                     <input type="text" name="phone" value="{{$teachers[0]->phone}}">
+                                                    <br><div style="color: red"> {{$errors->first('phone')}}</div>
                                                     
                                             </div>
                                         </div>

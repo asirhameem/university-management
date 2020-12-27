@@ -43,15 +43,18 @@
                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Book Name *" name="book_name"  />
+                                            <br><div style="color: red"> {{$errors->first('book_name')}}</div>
                                          
                                         </div>
                                          <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Quantity *"  name="quantity"  />
+                                            <br><div style="color: red"> {{$errors->first('quantity')}}</div>
                                          
                                         </div>
                                        
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Available Book" name="available"  />
+                                            <br><div style="color: red"> {{$errors->first('available')}}</div>
                                       
                                         </div>
                                         

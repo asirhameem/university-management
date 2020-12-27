@@ -105,9 +105,9 @@
                        
                             <tr id="data-row">
                               <td>{{$enrolls[$i]['enid']}}</td>
-                              <td>{{$enrolls[$i]['courseid ']}}</td> 
-                              <td>{{$enrolls[$i]['instructorid ']}}</td>
-                              <td>{{$enrolls[$i]['sid ']}}</td>
+                              <td>{{$enrolls[$i]['courseid']}}</td> 
+                              <td>{{$enrolls[$i]['instructorid']}}</td>
+                              <td>{{$enrolls[$i]['sid']}}</td>
                               <td>{{$enrolls[$i]['grade']}}</td>
                                  
                                 
