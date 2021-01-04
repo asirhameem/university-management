@@ -27,10 +27,21 @@ class AdminController extends Controller
     
     
 	function profile(){
-		$id = session()->get('uid');
+		/*$id = session()->get('uid');
 		$user = User::where('uid' ,$id)
 		->get();
-		return view('admin.profile')->with('users', $user);
+		return view('admin.profile')->with('users', $user);*/
+
+		   $client = new \GuzzleHttp\Client();
+
+        $request = new \GuzzleHttp\Psr7\Request('GET', 'localhost:3000/admin/profile');
+        $promise = $client->sendAsync($request)->then(function ($response) {
+        echo '' . $response->getBody();
+
+});
+
+$promise->wait();
+
     }
   
 	function edit()
@@ -39,6 +50,18 @@ class AdminController extends Controller
 		$user = User::where('uid', $id)
 		->get();
 		return view('admin.updateprofile')->with('users', $user);
+
+		/*$client = new \GuzzleHttp\Client();
+
+        $request = new \GuzzleHttp\Psr7\Request('GET', 'localhost:8000/admin/update/:id');
+        $promise = $client->sendAsync($request)->then(function ($response) {
+        echo '' . $response->getBody();
+
+});
+
+$promise->wait();*/
+
+
 	}
 	function update(Request $request)
 	{

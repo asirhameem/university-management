@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Add Student</title>
+    <title>Add Teacher</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -30,35 +30,53 @@
 	
 
 
-		<form method="post" enctype="multipart/form-data" action="{{route('student.add')}}">
+		<form method="post" enctype="multipart/form-data" action="{{route('teacher.add')}}">
 
 			<input type="hidden" name="_token" value="{{csrf_token()}}">
 			<fieldset>
-				<legend>Add Student</legend>
+				<legend>Add Teacher</legend>
 			<table>
+				 {{$errors->first('name')}}
 				<tr>
+					
 					<td>Full Name</td>
 					<td><input type="text" name="name" ></td>
+					 
+					 
 				</tr>
+				
 				<tr>
+					
 					<td>Email</td>
 					<td><input type="email" name="email" ></td>
+					
 				</tr>
+				
 				<tr>
+					
 					<td>User Name</td>
 					<td><input type="text" name="username" ></td>
+					
 				</tr>
+				
 				<tr>
+					
 					<td>Password</td>
 					<td><input type="password" name="password" ></td>
+					
 				</tr>
+				
 				<tr>
+					
 					<td>Type</td>
-					<td><input type="radio" name="radio"  value="1">Student</td>
+					<td><input type="radio" name="radio"  value="2">Teacher</td>
+				
 				</tr>
 				<tr>
+				
 					<td>Dp</td>
 					<td><input type="text" name="dp" ></td>
+					 	 
 				</tr>
 				
 				
@@ -66,38 +84,58 @@
 					<tr>
 					<td>Status</td>
 					<td><input type="text" name="status" ></td>
-				</tr>
-
-				<tr>
-					<tr>
-					<td>CGPA</td>
-					<td><input type="text" name="cgpa" ></td>
+					
 				</tr>
 
 				<tr>
 					<tr>
 					<td>Department</td>
 					<td><input type="text" name="department" ></td>
+					 
 				</tr>
 
 				<tr>
 					<tr>
-					<td>DOB</td>
-					<td><input type="text" name="dob" ></td>
+					<td>Designation</td>
+					<td><input type="text" name="designation" ></td>
+					 
+				</tr>
+
+				<tr>
+					<tr>
+					<td>Salary</td>
+					<td><input type="text" name="salary" ></td>
+					  
 				</tr>
 				<tr>
 					<tr>
-					<td>admission date</td>
-					<td><input type="text" name="admission_date" ></td>
+					<td>Join Date</td>
+					<td><input type="text" name="joindate" ></td>
+					
 				</tr>
 				<tr>
 					<tr>
-					<td>student status</td>
-					<td><input type="text" name="student_status" ></td>
+					<td>Address</td>
+					<td><input type="text" name="address" ></td>
+					
+				</tr>
+				<tr>
+					<tr>
+					<tr>
+					<td>Gender</td>
+					<td><input type="text" name="gender" ></td>
+					 
+				</tr>
+				<tr>
+					<tr>
+					<tr>
+					<td>Phone</td>
+					<td><input type="text" name="phone" ></td>
+					 
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="submit" name="submit" value="Add Student"></td>
+					<td><input type="submit" name="submit" value="Add Teacher"></td>
 				</tr>
 
 			</table>

@@ -54,6 +54,8 @@ Route::get('/adminhome/course/info/edit/{id}', 'HistoryController@courseedit')->
 Route::post('/adminhome/course/info/edit/{id}', 'HistoryController@courseupdate');
 Route::get('/adminhome/course/info/delete/{id}', 'HistoryController@coursedelete')->name('course.delete');
 Route::get('/admin/enrolllist', 'HistoryController@enrolllist')->name('course.enroll');
+Route::get('/admin/addcourse', 'HistoryController@addcourse')->name('course.add');
+Route::post('/admin/addcourse', 'HistoryController@storecourse');
 
 
 
@@ -90,6 +92,8 @@ Route::get('/adminhome/teacher/info/message/{id}', 'AdminTeacherController@teach
 Route::post('/adminhome/teacher/info/message/{id}', 'AdminTeacherController@teachersend');
 Route::get('/adminhome/teacher/info/warning/{id}', 'AdminTeacherController@teacherwarn')->name('teacher.warn');
 Route::post('/adminhome/teacher/info/warning/{id}', 'AdminTeacherController@teacherwarning');
+Route::get('/admin/addteacher', 'AdminTeacherController@addteacher')->name('teacher.add');
+Route::post('/admin/addteacher', 'AdminTeacherController@store');
 
 
 
@@ -105,3 +109,5 @@ Route::get('/adminhome/employee/info/message/{id}', 'AdminEmpoyeeController@empl
 Route::post('/adminhome/employee/info/message/{id}', 'AdminEmpoyeeController@employeesend');
 Route::get('/adminhome/employee/info/warning/{id}', 'AdminEmpoyeeController@employeewarn')->name('employee.warn');
 Route::post('/adminhome/employee/info/warning/{id}', 'AdminEmpoyeeController@employeewarning');
+Route::get('/admin/addemployee', 'AdminEmpoyeeController@addemployee')->name('employee.add');
+Route::post('/admin/addemployee', 'AdminEmpoyeeController@store');

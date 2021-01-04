@@ -154,40 +154,33 @@ function employeemessage($id)
     }
     
     
-    public function addstudent(){
+    public function addemployee(){
     
-      return view('admin.addstudent');
+      return view('admin.addemployee');
     }
 
      
 public function store(Request $request){
 
-                 $user = new User();
+   
+
+                $user = new User();
                 $user->name= $request->name;
                 $user->email= $request->email;
                 $user->username= $request->username;
                 $user->password= $request->password;
-                $user->type=1;
+                $user->type=3;
                 $user->dp= $request->dp;
                 $user->status= $request->status;
                 $user->save();
 
                  $sv = User::where('name', $request->name)
                   ->first();
-                DB::table('student')->insert(
-                ['uid' => $sv->uid,'cgpa' => $request->cgpa,'department' => $request->department,'dob' => $request->dob,'admission_date' => $request->admission_date,'student_status' => $request->student_status]
+                DB::table('employee')->insert(
+                ['uid' => $sv->uid,'gender' => $request->gender,'department' => $request->department,'address' => $request->address,'designation' => $request->designation,'joindate' => $request->joindate,'phone' => $request->phone,'salary' => $request->salary]
             );
 
-                 return redirect()->route('adminhome.studentshow');
-
-
-
-
-
-          
-           
-
-
+                 return redirect()->route('adminhome.employeeshow');
 
 }
 

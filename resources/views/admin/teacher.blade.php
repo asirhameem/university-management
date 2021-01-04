@@ -100,7 +100,7 @@
    <div class="col-md-3">
       
       
-      <a href="{{route('student.add')}}"  class="list-group-item list-group-item-action"><button class="btn btn-lg btn-success" type="button" id="btnaddcourse"><i class="glyphicon glyphicon-ok-sign"></i> Add Teacher</button> <br> </a>
+      <a href="{{route('teacher.add')}}"  class="list-group-item list-group-item-action"><button class="btn btn-lg btn-success" type="button" id="btnaddcourse"><i class="glyphicon glyphicon-ok-sign"></i> Add Teacher</button> <br> </a>
 </div>
       <div class="container">
         <div class="row justify-content-center">

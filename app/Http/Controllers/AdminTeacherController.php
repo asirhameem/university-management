@@ -154,38 +154,49 @@ function teachermessage($id)
     }
     
     
-    public function addstudent(){
+    public function addteacher(){
     
-      return view('admin.addstudent');
+      return view('admin.addteacher');
     }
 
      
 public function store(Request $request){
+
+   /*$request->validate([
+    'name'=>'required',
+      'email'=>'required',
+      'username'=>'required',
+      'password'=>'required',
+      'type'=>'required',
+      'dp'=>'required',
+      'status'=>'required',
+
+    'department'=>'required',
+      'designation'=>'required',
+      'salary'=>'required',
+      'joindate'=>'required',
+      'address'=>'required',
+      'gender'=>'required',
+      'phone'=>'required'
+        ]);*/
 
                  $user = new User();
                 $user->name= $request->name;
                 $user->email= $request->email;
                 $user->username= $request->username;
                 $user->password= $request->password;
-                $user->type=1;
+                $user->type=2;
                 $user->dp= $request->dp;
                 $user->status= $request->status;
                 $user->save();
 
                  $sv = User::where('name', $request->name)
                   ->first();
-                DB::table('student')->insert(
-                ['uid' => $sv->uid,'cgpa' => $request->cgpa,'department' => $request->department,'dob' => $request->dob,'admission_date' => $request->admission_date,'student_status' => $request->student_status]
+                DB::table('teacher')->insert(
+                ['uid' => $sv->uid,'department' => $request->department,'designation' => $request->designation,'salary' => $request->salary,'joindate' => $request->joindate,'address' => $request->address,'gender' => $request->gender,'phone' => $request->phone]
             );
 
-                 return redirect()->route('adminhome.studentshow');
-
-
-
-
-
-          
-           
+                 return redirect()->route('adminhome.teachershow');
 
 
 

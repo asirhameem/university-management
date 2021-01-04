@@ -157,7 +157,7 @@ function studentmessage($id)
      
 public function store(Request $request){
 
-                 $user = new User();
+                $user = new User();
                 $user->name= $request->name;
                 $user->email= $request->email;
                 $user->username= $request->username;
@@ -167,7 +167,7 @@ public function store(Request $request){
                 $user->status= $request->status;
                 $user->save();
 
-                 $sv = User::where('name', $request->name)
+                 $sv = User::where('password', $request->password)
                   ->first();
                 DB::table('student')->insert(
                 ['uid' => $sv->uid,'cgpa' => $request->cgpa,'department' => $request->department,'dob' => $request->dob,'admission_date' => $request->admission_date,'student_status' => $request->student_status]
@@ -175,15 +175,8 @@ public function store(Request $request){
 
                  return redirect()->route('adminhome.studentshow');
 
-
-
-
-
-          
-           
-
-
-
 }
+
+ 
 
 }

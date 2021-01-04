@@ -33,16 +33,37 @@ class HistoryController extends Controller
 
 function library(){
         
-        $library = Library::all();
+        /*$library = Library::all();
                    
-        return view('library.booklist')->with('librarys', $library);
+        return view('library.booklist')->with('librarys', $library);*/
+
+        
+        $client = new \GuzzleHttp\Client();
+
+        $request = new \GuzzleHttp\Psr7\Request('GET', 'localhost:3000/admin/library');
+        $promise = $client->sendAsync($request)->then(function ($response) {
+        echo '' . $response->getBody();
+
+});
+
+$promise->wait();
 }
 
     function bookinfo($id){
-      $library = Library::where('lid', $id)
+     /* $library = Library::where('lid', $id)
                     ->get();
         
-        return view('library.bookinfo')->with('librarys', $library);
+        return view('library.bookinfo')->with('librarys', $library);*/
+          $client = new \GuzzleHttp\Client();
+
+        $request = new \GuzzleHttp\Psr7\Request('GET', 'localhost:3000/admin/bookinfo/:id');
+        $promise = $client->sendAsync($request)->then(function ($response) {
+        echo '' . $response->getBody();
+
+});
+
+$promise->wait();
+
 
     
     }
@@ -90,7 +111,11 @@ function library(){
 
     public function addbook(){
     
-      return view('library.addbook');
+     return view('library.addbook');
+      
+
+
+
     }
 
      
@@ -123,8 +148,18 @@ public function store(Request $request){
      
 	function course(){
         
-            $course = Course::all();
+           $course = Course::all();
 		return view('course.courselist')->with('courses', $course);
+
+      /* $client = new \GuzzleHttp\Client();
+
+        $request = new \GuzzleHttp\Psr7\Request('GET', 'localhost:3000/admin/addcourse');
+        $promise = $client->sendAsync($request)->then(function ($response) {
+        echo '' . $response->getBody();
+
+});
+
+$promise->wait();*/
     }
 
      function courseinfo($id){
@@ -185,6 +220,42 @@ public function store(Request $request){
                    
         return view('course.enrolllist')->with('enrolls', $enroll);
 }
+
+ public function addcourse(){
+    
+      return view('course.addcourse');
+    }
+
+    public function storecourse(Request $request){
+      
+
+      $request->validate([
+      
+      'cname'=>'required',
+       'cdescription'=>'required',
+        'cteacher'=>'required',
+        'cstart'=>'required',
+       'cend'=>'required',
+        'cpic'=>'required'
+        ]);
+                 $course = new Course();
+                $course->cstart= $request->cstart;
+                $course->cdescription= $request->cdescription;
+                $course->cteacher= $request->cteacher;
+                $course->cstart= $request->cstart;
+                $course->cend= $request->cend;
+                $course->cpic= $request->cpic;
+                
+                $course->save();
+
+                
+
+                 return redirect()->route('adminhome.course');
+
+}
+
+
+
 
 function borrowlist(){
         
