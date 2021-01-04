@@ -1,11 +1,14 @@
-@extends('Layouts/navbar')
-@section('title')
-Dashboard
-@endsection
+<!doctype html>
+<html lang="en">
 
-@section('content')
-<div class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">
-    
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://unpkg.com/tailwindcss@1.4.6/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">
     <div class="h-screen w-full flex overflow-hidden select-none">
        
         <main class="my-1 pt-2 pb-2 px-10 flex-1 bg-gray-200 dark:bg-black rounded-l-lg
@@ -150,5 +153,6 @@ Dashboard
             
 
     </div>
-</div>
-@endsection
+</body>
+
+</html>

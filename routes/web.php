@@ -22,6 +22,7 @@ Route::get('/registration','UsersController@index');
 Route::post('/registration','UsersController@store')->name('user.register');
 
 Route::get('/login','UsersController@login')->name('user.login');
+Route::post('/login','LoginController@LoginNormal')->name('user.loginCheck');
 Route::get('/facebook','LoginController@LoadFacebook')->name('user.facebook');
 
 // Middleware 
@@ -29,4 +30,5 @@ Route::get('/facebook','LoginController@LoadFacebook')->name('user.facebook');
 // Route::group(['middleware'=>['session']], function(){
     
 // });
-Route::get('/dashboard','LoginController@FacebookResponse')->name('teacher.dashboard');
+Route::get('/dashboard','TeacherController@index')->name('teacher.dashboard');
+Route::get('/profile','TeacherController@show')->name('teacher.profile');

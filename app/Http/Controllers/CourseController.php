@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\User;
 
-class UsersController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //return the view of the registration page.
-        return view('User.registration');
+        //
     }
 
     /**
@@ -24,11 +21,9 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function login(Request $req)
+    public function create()
     {
-        //render the view of login page;
-        //$req->session()->flash('msg','Your are good to go.');
-        return view('User.login');
+        //
     }
 
     /**
@@ -39,33 +34,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //store the user to database.
-
-        $request->validate([
-            'name'=>'required|min:3',
-            'username'=>'required|min:3',
-            'password'=>'required|min:3',
-            'email'=>'required',
-            'confirmPassword'=>'required|same:password' ]);
-
-
-        $user = new User();
-        $user->name = $request->name;
-        $user->username = $request->username;
-        $user->password = $request->password;
-        $user->email = $request->email;
-        $user->dp = '';
-        $user->type = 'Teacher';
-        $user->status = 'Inactive';
-        $save = $user->save();
-        
-        if($save)
-        {
-            $request->session()->flash('success', 'User profile created successfully');
-            return redirect()->route('user.login');
-        }else{
-            return redirect()->back();
-        }
+        //
     }
 
     /**

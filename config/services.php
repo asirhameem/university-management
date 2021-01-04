@@ -32,7 +32,8 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_APP_ID'),
         'client_secret' => env('FACEBOOK_APP_SECRET'),
-        'redirect' => 'http://localhost:8000/home',
+        'redirect' => env('FACEBOOK_REDIRECT')
+        //'http://localhost:8000/dashboard',
     ]
 
 ];
