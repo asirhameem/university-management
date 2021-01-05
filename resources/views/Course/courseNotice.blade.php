@@ -1,14 +1,36 @@
-<!doctype html>
-<html lang="en">
+@extends('Layouts/navbar')
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://unpkg.com/tailwindcss@1.4.6/dist/tailwind.min.css" rel="stylesheet">
-</head>
 
-<body class="flex items-center justify-center">
+@section('title')
+Course Notice
+@endsection
+
+@section('content')
+<div class="flex items-center justify-center">
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+
+        @media (min-width: 640px) {
+            table {
+                display: inline-table !important;
+            }
+
+            thead tr:not(:first-child) {
+                display: none;
+            }
+        }
+
+        td:not(:last-child) {
+            border-bottom: 0;
+        }
+
+        th:not(:last-child) {
+            border-bottom: 2px solid rgba(0, 0, 0, .1);
+        }
+    </style>
     <div class="container">
         <table class="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
             <thead class="text-white">
@@ -57,31 +79,5 @@
             </tbody>
         </table>
     </div>
-</body>
-
-<style>
-    html,
-    body {
-        height: 100%;
-    }
-
-    @media (min-width: 640px) {
-        table {
-            display: inline-table !important;
-        }
-
-        thead tr:not(:first-child) {
-            display: none;
-        }
-    }
-
-    td:not(:last-child) {
-        border-bottom: 0;
-    }
-
-    th:not(:last-child) {
-        border-bottom: 2px solid rgba(0, 0, 0, .1);
-    }
-</style>
-
-</html>
+</div>
+@endsection

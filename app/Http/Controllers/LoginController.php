@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\DB;
 use App\User;
+
 class LoginController extends Controller
 {
     //
@@ -19,45 +20,60 @@ class LoginController extends Controller
     {
         $info = Socialite::driver('facebook')->user();
         //print_r($user);
-        $user = new User();
-        $user->name = $info->name;
-        $user->username = '';
-        $user->password = '';
-        $user->email = $info->email;
-        $user->dp = $info->avatar;
-        $user->type = 'Teacher';
-        $user->status = 'Inactive';
-        $save = $user->save();
-        
-        if($save){
+        $check = DB::table('users')
+            ->where('email', '=', $info->email)
+            ->first();
+        if ($check == null) {
+            $user = new User();
+            $user->name = $info->name;
+            $user->username = '';
+            $user->password = '';
+            $user->email = $info->email;
+            $user->dp = $info->avatar;
+            $user->type = 'Teacher';
+            $user->status = 'Inactive';
+            $save = $user->save();
+
+            if ($save) {
+                return redirect()->route('teacher.dashboard');
+            } else {
+                return redirect()->route('user.login');
+            }
+            //print_r($info);
+        } else {
+            $teacher = DB::table('teacher')
+                        ->where('teacher.uid', '=', $check->uid)
+                        ->first();
+            session()->put('email', $check->email);
+            session()->put('type', $check->type);
+            session()->put('name', $check->name);
+            session()->put('id', $check->uid);
+            session()->put('teacherId', $teacher->tid);
+            //return view('Teacher.teacherDash')->with('user',$user);
             return redirect()->route('teacher.dashboard');
-        }else{
-            return redirect()->route('user.login');
+            //print_r(session()->all());
         }
-        
     }
 
     public function LoginNormal(Request $request)
     {
         $user  = User::where('email', $request->email)
-                        ->where('password', $request->password)
-                        ->first();
+            ->where('password', $request->password)
+            ->first();
         $teacher = DB::table('teacher')
-                        ->where('teacher.uid','=',$user->uid)
-                        ->first();
-        if($user)
-        {
+            ->where('teacher.uid', '=', $user->uid)
+            ->first();
+        if ($user) {
             $request->session()->put('email', $user->email);
             $request->session()->put('type', $user->type);
             $request->session()->put('name', $user->name);
-            $request->session()->put('id',$user->uid);
-            $request->session()->put('teacherId',$teacher->tid);
+            $request->session()->put('id', $user->uid);
+            $request->session()->put('teacherId', $teacher->tid);
             //return view('Teacher.teacherDash')->with('user',$user);
             return redirect()->route('teacher.dashboard');
-        }else{
+        } else {
             $request->session()->flash('msg', 'Please provide valid Email & Password');
-    		return redirect()->route('user.login');
+            return redirect()->route('user.login');
         }
     }
-
 }

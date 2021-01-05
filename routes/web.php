@@ -24,6 +24,7 @@ Route::post('/registration','UsersController@store')->name('user.register');
 Route::get('/login','UsersController@login')->name('user.login');
 Route::post('/login','LoginController@LoginNormal')->name('user.loginCheck');
 Route::get('/facebook','LoginController@LoadFacebook')->name('user.facebook');
+Route::get('/facebook-response','LoginController@FacebookResponse');
 
 // Middleware 
 // Check for user login.
@@ -32,6 +33,7 @@ Route::get('/facebook','LoginController@LoadFacebook')->name('user.facebook');
 // });
 Route::get('/dashboard','TeacherController@index')->name('teacher.dashboard');
 Route::get('/profile','TeacherController@show')->name('teacher.profile');
+
 Route::get('/course-content','CourseController@content')->name('course.content');
 Route::get('/course-details','CourseController@index')->name('course.details');
 Route::get('/course-notice','CourseController@notice')->name('course.notice');

@@ -1,14 +1,11 @@
-<!doctype html>
-<html lang="en">
+@extends('Layouts/navbar')
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://unpkg.com/tailwindcss@1.4.6/dist/tailwind.min.css" rel="stylesheet">
-</head>
+@section('title')
+Course Contents
+@endsection
 
-<body class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">
+@section('content')
+<div class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">
     <div class="h-screen w-full flex overflow-hidden select-none">
 
         <div class="md:px-32 py-8 w-full">
@@ -55,6 +52,5 @@
 
 
     </div>
-</body>
-
-</html>
+</div>
+@endsection

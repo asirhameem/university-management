@@ -17,7 +17,7 @@ class TeacherController extends Controller
         //load dashboard.
         if(session()->has('email'))
         {
-            $teacher = session()->get('teacherId')
+            $teacher = session()->get('teacherId');
             $courses = DB::table('course')
                         ->where('course.cteacher','=',$teacher)
                         ->get();
