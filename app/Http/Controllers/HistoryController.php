@@ -11,6 +11,7 @@ use App\Course;
 use App\Enroll;
 use App\Payment;
 use PDF;
+use GuzzleHttp\Client;
 
 
 use Illuminate\Support\Facades\DB;
@@ -33,12 +34,12 @@ class HistoryController extends Controller
 
 function library(){
         
-        /*$library = Library::all();
+        $library = Library::all();
                    
-        return view('library.booklist')->with('librarys', $library);*/
+        return view('library.booklist')->with('librarys', $library);
 
         
-        $client = new \GuzzleHttp\Client();
+        /*$client = new \GuzzleHttp\Client();
 
         $request = new \GuzzleHttp\Psr7\Request('GET', 'localhost:3000/admin/library');
         $promise = $client->sendAsync($request)->then(function ($response) {
@@ -46,15 +47,15 @@ function library(){
 
 });
 
-$promise->wait();
+$promise->wait();*/
 }
 
     function bookinfo($id){
-     /* $library = Library::where('lid', $id)
+      $library = Library::where('lid', $id)
                     ->get();
         
-        return view('library.bookinfo')->with('librarys', $library);*/
-          $client = new \GuzzleHttp\Client();
+        return view('library.bookinfo')->with('librarys', $library);
+        /*  $client = new \GuzzleHttp\Client();
 
         $request = new \GuzzleHttp\Psr7\Request('GET', 'localhost:3000/admin/bookinfo/:id');
         $promise = $client->sendAsync($request)->then(function ($response) {
@@ -62,7 +63,7 @@ $promise->wait();
 
 });
 
-$promise->wait();
+$promise->wait();*/
 
 
     
@@ -151,15 +152,9 @@ public function store(Request $request){
            $course = Course::all();
 		return view('course.courselist')->with('courses', $course);
 
-      /* $client = new \GuzzleHttp\Client();
+       
 
-        $request = new \GuzzleHttp\Psr7\Request('GET', 'localhost:3000/admin/addcourse');
-        $promise = $client->sendAsync($request)->then(function ($response) {
-        echo '' . $response->getBody();
 
-});
-
-$promise->wait();*/
     }
 
      function courseinfo($id){
@@ -167,6 +162,9 @@ $promise->wait();*/
                     ->get();
         
         return view('course.courseinfo')->with('courses', $course);
+
+
+      
 
     
     }
@@ -188,13 +186,13 @@ $promise->wait();*/
       'cdescription'=>'required',
       
        'cstart'=>'required',
-      'cend'=>'required',
-      'cpic'=>'required'
+      'cend'=>'required'
+     
         ]);
         
    Course::where('cid', $id)->update(['cname' => $request->cname,
     'cdescription' => $request->cdescription,
-    'cstart' => $request->cstart,'cend' => $request->cend,'cpic' => $request->cpic
+    'cstart' => $request->cstart,'cend' => $request->cend
   ]);
 
         return redirect()->route('adminhome.courseinfo', $id);
@@ -313,10 +311,18 @@ function get_borrow_data()
 
 
 function financials(){
+
         
+       $client = new \GuzzleHttp\Client();
+
+        $request = new \GuzzleHttp\Psr7\Request('GET', 'localhost:3000/admin/history');
+        $promise = $client->sendAsync($request)->then(function ($response) {
+        echo '' . $response->getBody();
+
+});
+
+$promise->wait();
        
-         $payment = $this->get_customer_data();
-         return view('payment.paymentlist')->with('payment', $payment);
 }
 
 function get_customer_data()

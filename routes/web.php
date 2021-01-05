@@ -27,6 +27,9 @@ Route::get('/adminhome/profile', 'AdminController@profile')->name('adminhome.pro
 Route::get('/adminhome/profile/edit', 'AdminController@edit')->name('adminhome.edit');
 Route::post('/adminhome/profile/edit', 'AdminController@update');
 
+Route::get('/admin/profile', 'AdminController@profile');
+Route::get('/admin/update/{id}', 'AdminController@edit');
+
 
 Route::get('/adminhome/messages', 'HistoryController@message')->name('adminhome.message');
 Route::get('/adminhome/warnings', 'HistoryController@warning')->name('adminhome.warning');
@@ -44,6 +47,9 @@ Route::get('/adminhome/library/info/delete/{id}', 'HistoryController@bookdelete'
 Route::get('/admin/addbook', 'HistoryController@addbook')->name('book.add');
 Route::post('/admin/addbook', 'HistoryController@store');
 
+
+
+
 Route::get('/admin/borrowlist', 'HistoryController@borrowlist')->name('book.borrow');
 Route::get('/admin/borrowlist/pdf', 'HistoryController@borrowpdf');
 
@@ -58,7 +64,8 @@ Route::get('/admin/addcourse', 'HistoryController@addcourse')->name('course.add'
 Route::post('/admin/addcourse', 'HistoryController@storecourse');
 
 
-
+Route::get('/admin/addcourse', 'HistoryController@course');
+Route::get('/addcourse/courseinfo/{id}', 'HistoryController@courseinfo');
 
 
 
@@ -111,3 +118,8 @@ Route::get('/adminhome/employee/info/warning/{id}', 'AdminEmpoyeeController@empl
 Route::post('/adminhome/employee/info/warning/{id}', 'AdminEmpoyeeController@employeewarning');
 Route::get('/admin/addemployee', 'AdminEmpoyeeController@addemployee')->name('employee.add');
 Route::post('/admin/addemployee', 'AdminEmpoyeeController@store');
+
+
+//Auth::routes();
+
+

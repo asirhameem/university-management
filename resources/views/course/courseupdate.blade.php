@@ -149,17 +149,7 @@
                                             </div>
                                         </div>
                                         <hr />
-                                        <div class="row">
-                                            <div class="col-sm-3 col-md-2 col-5">
-                                                <label style="font-weight:bold;">Course Pic</label>
-                                            </div>
-                                            <div class="col-md-8 col-6">
-                                                    <input type="text" name="cpic" value="{{$courses[0]->cpic}}">
-                                                     <br> {{$errors->first('cpic')}}
-                                                    
-                                            </div>
-                                        </div>
-                                        <hr />
+                                       
                                         
 
                                        

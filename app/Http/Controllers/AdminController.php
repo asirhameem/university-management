@@ -27,12 +27,12 @@ class AdminController extends Controller
     
     
 	function profile(){
-		/*$id = session()->get('uid');
+		$id = session()->get('uid');
 		$user = User::where('uid' ,$id)
 		->get();
-		return view('admin.profile')->with('users', $user);*/
+		return view('admin.profile')->with('users', $user);
 
-		   $client = new \GuzzleHttp\Client();
+		 /*  $client = new \GuzzleHttp\Client();
 
         $request = new \GuzzleHttp\Psr7\Request('GET', 'localhost:3000/admin/profile');
         $promise = $client->sendAsync($request)->then(function ($response) {
@@ -40,7 +40,7 @@ class AdminController extends Controller
 
 });
 
-$promise->wait();
+$promise->wait();*/
 
     }
   
@@ -53,7 +53,7 @@ $promise->wait();
 
 		/*$client = new \GuzzleHttp\Client();
 
-        $request = new \GuzzleHttp\Psr7\Request('GET', 'localhost:8000/admin/update/:id');
+        $request = new \GuzzleHttp\Psr7\Request('GET', 'localhost:3000/admin/update/:id');
         $promise = $client->sendAsync($request)->then(function ($response) {
         echo '' . $response->getBody();
 

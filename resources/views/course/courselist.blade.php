@@ -98,7 +98,7 @@
    <div class="col-md-3">
       
       
-      <a href="{{route('course.add')}}"  class="list-group-item list-group-item-action"><button class="btn btn-lg btn-success" type="button" id="btnaddcourse"><i class="glyphicon glyphicon-ok-sign"></i> Add Course</button> <br> </a>
+    
 
        <a href="{{route('course.enroll')}}"  class="list-group-item list-group-item-action"><button class="btn btn-lg btn-success" type="button" id="btnaddcourse"><i class="glyphicon glyphicon-ok-sign"></i> Enroll List</button> <br> </a>
 </div>
