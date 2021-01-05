@@ -31,6 +31,31 @@ Course Notice
             border-bottom: 2px solid rgba(0, 0, 0, .1);
         }
     </style>
+
+
+
+
+
+    <div>
+
+        <div class="col-span-2 lg:col-span-1">
+            <form action="">
+                @csrf
+                <input type="text" class="border-solid border-gray-400 border-2 p-3 md:text-xl w-full" placeholder="Name" />
+        </div>
+
+        <div class="col-span-2">
+            <input cols="30" rows="8" class="border-solid border-gray-400 border-2 p-3 md:text-xl w-full" placeholder="Message">
+        </div>
+
+        <div class="col-span-2 text-right">
+            <input type="submit" value="SAVE" class="py-3 px-6 bg-green-500 text-white font-bold w-full sm:w-32">
+
+        </div>
+        </form>
+    </div>
+
+
     <div class="container">
         <table class="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
             <thead class="text-white">

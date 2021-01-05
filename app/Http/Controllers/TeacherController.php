@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
+
 class TeacherController extends Controller
 {
     /**
@@ -14,17 +15,13 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //load dashboard.
-        if(session()->has('email'))
-        {
-            $teacher = session()->get('teacherId');
-            $courses = DB::table('course')
-                        ->where('course.cteacher','=',$teacher)
-                        ->get();
-            return view('Teacher.teacherDash')->with('courses',$courses);
-        }else{
-            return redirect()->route('user.login');
-        }
+        //load dashboard with courses and staff
+
+        $tid = session()->get('teacherId');
+        $courses = DB::table('course')
+            ->where('cteacher', '=', $tid)
+            ->get();
+        return view('Teacher.teacherDash')->with('courses', $courses);
     }
 
     /**
@@ -34,7 +31,10 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        //teachers all the courses and staff
+
+
+
     }
 
     /**
@@ -58,17 +58,17 @@ class TeacherController extends Controller
     public function show()
     {
         // Teacher Profile Load
-        $id = session()->get('id');    
+        $id = session()->get('id');
         $user = DB::table('users')
-                ->join('teacher','users.uid','=','teacher.uid')
-                ->select('users.*','teacher.*')
-                ->where('users.uid','=',$id)
-                ->first();
-                
-                     
-		return view('Teacher.teacherProfile')->with('users', $user);
+            ->join('teacher', 'users.uid', '=', 'teacher.uid')
+            ->select('users.*', 'teacher.*')
+            ->where('users.uid', '=', $id)
+            ->first();
+
+
+        return view('Teacher.teacherProfile')->with('users', $user);
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -76,9 +76,10 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
         //
+
     }
 
     /**
@@ -88,9 +89,51 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //update user info
+
+        $request->validate([
+            'name' => 'required|min:3',
+            'password' => 'required|min:3',
+            'confirmPassword' => 'required|same:password',
+            'address' => 'required|min:5',
+            'phone' => 'required|min:11'
+        ]);
+
+        $id = session()->get('id');
+        $teacherId = session()->get('teacherId');
+        // if ($request->has('name') || $request->has('password')) {
+        if ($request->hasfile('dp')) {
+            $file = $request->file('dp');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/profile-picture/', $filename);
+        } else {
+            $user = DB::table('users')
+                ->where('uid', $id)
+                ->first();
+            $filename = $user->dp;
+        }
+        // $user->profile_pic = $filename;
+
+        $save = DB::table('users')
+            ->where('uid', $id)
+            ->update([
+                'name' => $request->name,
+                'password' => $request->confirmPassword,
+                'dp' => $filename
+            ]);
+        $teacher = DB::table('teacher')
+            ->where('tid', $teacherId)
+            ->update([
+                'phone' => $request->phone,
+                'address' => $request->address
+            ]);
+
+        if ($save > 0) {
+            session()->put('name', $request->name);
+        }
+        return redirect()->route('teacher.profile');
     }
 
     /**

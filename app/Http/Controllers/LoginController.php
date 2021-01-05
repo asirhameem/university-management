@@ -42,8 +42,8 @@ class LoginController extends Controller
             //print_r($info);
         } else {
             $teacher = DB::table('teacher')
-                        ->where('teacher.uid', '=', $check->uid)
-                        ->first();
+                ->where('teacher.uid', '=', $check->uid)
+                ->first();
             session()->put('email', $check->email);
             session()->put('type', $check->type);
             session()->put('name', $check->name);
@@ -60,10 +60,11 @@ class LoginController extends Controller
         $user  = User::where('email', $request->email)
             ->where('password', $request->password)
             ->first();
-        $teacher = DB::table('teacher')
-            ->where('teacher.uid', '=', $user->uid)
-            ->first();
+        
         if ($user) {
+            $teacher = DB::table('teacher')
+                        ->where('teacher.uid', '=', $user->uid)
+                        ->first();
             $request->session()->put('email', $user->email);
             $request->session()->put('type', $user->type);
             $request->session()->put('name', $user->name);
@@ -75,5 +76,12 @@ class LoginController extends Controller
             $request->session()->flash('msg', 'Please provide valid Email & Password');
             return redirect()->route('user.login');
         }
+    }
+
+    public function Logout()
+    {
+        session()->flush();
+        session()->flash('msg', 'Logout Successfully');
+        return redirect()->route('user.login');
     }
 }

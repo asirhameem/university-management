@@ -5,7 +5,20 @@ Course Contents
 @endsection
 
 @section('content')
+
+<div class="ml-20">
+    <form class="m-4 flex" action="/course-content/{{$id}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="text" name="name" class="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white" />
+        <input type="file" name="file" class="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white" />
+        <input type="submit" value="Upload" class="px-8 rounded-r-lg bg-yellow-400  text-gray-800 font-bold p-4 uppercase border-yellow-500 border-t border-b border-r">
+    </form>
+</div>
+
 <div class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">
+
+
+
     <div class="h-screen w-full flex overflow-hidden select-none">
 
         <div class="md:px-32 py-8 w-full">
@@ -14,36 +27,23 @@ Course Contents
                     <thead class="bg-gray-800 text-white">
                         <tr>
                             <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
-                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Last name</th>
-                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Phone</th>
-                            <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Email</td>
+                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Path</th>
+                            <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Action</th>
+
+
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
+                        @forelse($contents as $content)
                         <tr>
-                            <td class="w-1/3 text-left py-3 px-4">Lian</td>
-                            <td class="w-1/3 text-left py-3 px-4">Smith</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
+                            <td class="w-1/3 text-left py-3 px-4">{{$content->contentname}}</td>
+                            <td class="w-1/3 text-left py-3 px-4">{{$content->contentpath}}</td>
+                            <td class="w-1/3 text-left py-3 px-4"><a href="/download/{{$content->contentpath}}">Download</a></td>
+
+
                         </tr>
-                        <tr class="bg-gray-100">
-                            <td class="w-1/3 text-left py-3 px-4">Emma</td>
-                            <td class="w-1/3 text-left py-3 px-4">Johnson</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                        </tr>
-                        <tr>
-                            <td class="w-1/3 text-left py-3 px-4">Oliver</td>
-                            <td class="w-1/3 text-left py-3 px-4">Williams</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                        </tr>
-                        <tr class="bg-gray-100">
-                            <td class="w-1/3 text-left py-3 px-4">Isabella</td>
-                            <td class="w-1/3 text-left py-3 px-4">Brown</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                        </tr>
+                        @empty
+                        @endforelse
                     </tbody>
                 </table>
             </div>
