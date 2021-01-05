@@ -39,7 +39,29 @@
        
        </div>
 
-      
+      <!--- <script>
+      $(function(){
+            $('#uploadForm').submit(function(e){
+                e.preventDefault();
+                  
+                  var data = $(this).serialize();
+                  var url = '{{url('skill_upload')}}'
+                  console.log(data);
+
+                  $.ajax({
+                      url:url,
+                      method:'post',
+                      data:data,
+                      success:function(response){
+                            console.log(response);
+                      },
+                      error:function(error){
+                          console.log("error");
+                      }
+                  });
+            });
+      });
+      </script>    --->
 
       
 </body>

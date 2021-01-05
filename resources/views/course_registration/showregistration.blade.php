@@ -74,6 +74,7 @@
                         <td>Course Id</td>
                         <td>Teacher Id</td>
                         <td>Action</td>
+                        <td>Lecture</td>
                     </tr>
             
                     @for($i=0; $i < count($showcourses); $i++)
@@ -85,6 +86,11 @@
                         <td>
                            
                             <a href="{{route('course_registration.dropcourse', $showcourses[$i]['enid'])}}">Drop Course</a> 
+                      
+                        </td>
+                        <td>
+                           
+                            <a href="/pdfgen">Sheet</a> 
                       
                         </td>
                     </tr>

@@ -6,6 +6,7 @@ use App\Http\Requests\studentRequest;
 use Illuminate\Support\Facades\DB;
 use Validator; 
 use App\Skill;
+use App\Student;
 
 
 class homeController extends Controller
@@ -39,6 +40,8 @@ class homeController extends Controller
 	}
 	
 	public function store(Request $req){
+
+       
 	
 		if($req->hasFile('photo')){
 			$file = $req->file('photo');
@@ -120,6 +123,14 @@ class homeController extends Controller
     	$std = Skill::find($id);
         return view('home.order', $std);
         
+    }
+
+    public function info($id, Request $req)
+    {
+        $student = Student::where('studentid', $id)
+        ->get();
+
+            return view('profile.index' )->with('students', $student);
     }
 
     

@@ -78,7 +78,7 @@
                   
           <a href="{{route('home.details', $studentskill[$i]['id'])}}"> <img src="{{asset('uploads/' . $studentskill[$i]['photo'])}}" class="profile-img" alt=""></a>
                 <div class="item">
-                    <h4>{{$studentskill[$i]['id']}}</h4>
+                    <h4>{{$studentskill[$i]['title']}}</h4>
                     
                 </div>
                 

@@ -52,7 +52,9 @@ Route::group(['middleware'=>['sess']], function(){
     
     Route::get('/getUsers', 'NoticeController@index');
     Route::get('/getUsers/{id}', 'NoticeController@getUsers');
-   
+    Route::get('/studentinfo/{id}', 'homeController@info')->name('profile.studentinfo');
+
+    Route::get('pdfgen', 'pdfmakerController@gen');
 });
 
 Route::get('/student_skill', 'homeController@display')->name('home.studentskill');

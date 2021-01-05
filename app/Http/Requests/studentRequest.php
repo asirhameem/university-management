@@ -24,9 +24,20 @@ class studentRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'description'=> 'required|min:5',
-            'photo' => 'required'
+            'email' => 'required'
+            //'description'=> 'required|min:5',
+            //'photo' => 'required'
+        ];
+        
+    }
+
+    public function messages()
+    {
+        return [
+
+            'email.required' => "Name can not be empty..!!"
+            //'username.min' => "Username must be greater than 3.."
+
         ];
     }
 }

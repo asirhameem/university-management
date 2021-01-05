@@ -97,7 +97,7 @@
 <script>
     $('#studentlist').on('click', function() {
         $.ajax({
-            url: '/student/<%=data[0].uid%>',
+            url: '{{route('profile.studentinfo', $uid)}}',
             method: 'get',
             dataType: 'json',
             success: function(data) {
