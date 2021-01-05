@@ -27,7 +27,7 @@
         <div class="right-area">
         <ul class="navbar">
         <li>  <a href="/logout" class="logout_btn">Logout</a></li>
-        <li>  <a href="#" class="logout_btn">Edit Tradition</a>
+        <li>  <a href="/getUsers" class="logout_btn">Edit Tradition</a>
         <ul class="next">
         <li><a href="edit_feature.php" class="logout_btn">Edit Feature</a></li>
         
@@ -60,9 +60,9 @@
                 
             </center>
             <a href="/courses"><i class="fa fa-desktop" aria-hidden="true"></i><span>Registration</span></a>
-            <a href="/library"><i class="fa fa-cogs" aria-hidden="true"></i><span>Library</span></a>
+            <a href="{{route('library.index')}}"><i class="fa fa-cogs" aria-hidden="true"></i><span>Library</span></a>
             <a href="/showregister/{{$email}}"><i class="fa fa-table" aria-hidden="true"></i><span>Show Registration</span></a>
-            <a href="/studentDashboard/showborrow/<%=data[0].email%>"><i class="fa fa-th" aria-hidden="true"></i><span>Show Borrowed Book</span></a>
+            <a href="/showbooks/{{$email}}"><i class="fa fa-th" aria-hidden="true"></i><span>Show Borrowed Book</span></a>
             <a href="{{route('profile.showskill', $uid)}}"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Show Upload</span></a>
             <a href="{{route('profile.showorder', $uid)}}"><i class="fa fa-sliders-h" aria-hidden="true"></i><span>Show Order</span></a>
            

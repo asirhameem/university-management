@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload File</title>
+    <script type="text/javascript" src="{{asset('jquery-3.5.1.min.js')}}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="/css/fileupload.css">
 </head>
 <body>
@@ -13,7 +16,7 @@
         <div class="form">
       
         <h4>Add File</h4>
-        <form name="myForm" method="post" enctype="multipart/form-data">
+        <form name="myForm" id="uploadForm" method="post" enctype="multipart/form-data">
         
         <font color="green"> <p> Photo Title :</p><input type="text" id="title" name="title" value="{{old('title')}}" ></font>
        

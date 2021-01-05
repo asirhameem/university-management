@@ -41,7 +41,17 @@ Route::group(['middleware'=>['sess']], function(){
     Route::get('/dropcourse/{id}', 'enrollController@dropcourse')->name('course_registration.dropcourse');
     Route::post('/dropcourse/{id}', 'enrollController@drop');
     
+    //Route::resource('/library', 'LibraryController');
+    //Route::get('/borrow/{id}', 'BorrowController@details')->name('borrow.details');
+    
+    Route::get('/library', 'LibraryController@index')->name('library.index');
+    Route::get('/library/{id}', 'LibraryController@show')->name('library.show');
+    Route::post('/library/{id}', 'BorrowController@store');
 
+    Route::get('/showbooks/{email}', 'BorrowController@show');
+    
+    Route::get('/getUsers', 'NoticeController@index');
+    Route::get('/getUsers/{id}', 'NoticeController@getUsers');
    
 });
 

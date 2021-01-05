@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skill Edit</title>
+    <title>Library Books</title>
     <link rel="stylesheet" href="/css/dashboardstyle.css">
-
-    <script type="text/javascript" src="{{asset('jquery-3.5.1.min.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
@@ -59,48 +57,55 @@
 
                                    
                 <img src="" class="profile-img" alt="">
-                
+               
                 
             </center>
             <a href="/studentDashboard"><i class="fa fa-desktop" aria-hidden="true"></i><span>Dashboard</span></a>
-            <a href="admininsert.php"><i class="fa fa-cogs" aria-hidden="true"></i><span>Add Food</span></a>
-            <a href="admin_edt_dlt.php"><i class="fa fa-table" aria-hidden="true"></i><span>Update Food</span></a>
-            <a href="tradition_user.php"><i class="fa fa-th" aria-hidden="true"></i><span>Tradition User</span></a>
-            <a href="showofferlist.php"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Offer List</span></a>
-            <a href="employee_reg.php"><i class="fa fa-sliders-h" aria-hidden="true"></i><span>Employee</span></a>
+            
            
             
         </div>
-        <form method="post" id="uploadForm" enctype="multipart/form-data">
-            <div class="content">
-                <div class="tableshow1">
-                    <table>
-                        <tr>
-                            <td>Title</td>
-                            <td><input type="text" name="title" value="{{$title}}"></td>
-                        </tr>
-                        <tr>
-                            <td>Photo</td>
-                            <td><input type="file" name="photo" value="{{$photo}}"></td>
-                        </tr>
-                        <tr>
-                            <td>Description</td>
-                            <td><input type="text" name="description" value="{{$description}}"></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" name="submit" value="Delete"></td>
-                        </tr>
-                       
-                       
-                    </table>
-                </div>
-             </div>
-        </form>
-
-       
-       
         
+        <div class="content">
+          
+          <h1>Borrow Your Books</h1>
+          <form method="post" id="library" enctype="multipart/form-data">
+              <div class="content">
+                  <div class="tableshow1">
+                      <table>
+                          <tr>
+                              <td>Book Name</td>
+                              <td><input type="text" name="name" value="{{$book_name}}"></td>
+                          </tr>
+                          <tr>
+                            <td>Book ID</td>
+                            <td><input type="text" name="lid" value="{{$lid}}"></td>
+                        </tr>
+                          <tr>
+                              <td>Borrow Date</td>
+                              <td><input type="datetime-local" id="birthdaytime" name="bdate"></td>
+                          </tr>
+                          <tr>
+                            <td>Return Date</td>
+                            <td><input type="datetime-local" id="birthdaytime" name="rdate"></td>
+                        </tr>
+                          <tr>
+                              <td>Your Student Email</td>
+                              <td><input type="text" id="" name="studentemail" value="{{$semail}}" ></td>
+                          </tr>
+                          <tr>
+                              <td></td>
+                              <td><input type="submit" name="submit" value="Borrow"></td>
+                          </tr>
+                         
+                         
+                      </table>
+                  </div>
+               </div>
+          </form>
+         </div>
+
+         
     
 </body>
 </html>

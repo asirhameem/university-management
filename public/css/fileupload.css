@@ -121,7 +121,7 @@ label #sidebar_btn:hover
 .content
 {
     margin-left: 250px;
-    background-image: linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.8)), url(images/res1.jpg);
+   
     background-position: center;
     
     background-size: cover;

@@ -60,7 +60,7 @@
             <a class="nav-link" href="#contact">Contact Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/skill">Student Skill</a>
+            <a class="nav-link" href="/student_skill">Student Skill</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/login">Login</a>
