@@ -32,3 +32,6 @@ Route::get('/facebook','LoginController@LoadFacebook')->name('user.facebook');
 // });
 Route::get('/dashboard','TeacherController@index')->name('teacher.dashboard');
 Route::get('/profile','TeacherController@show')->name('teacher.profile');
+Route::get('/course-content','CourseController@content')->name('course.content');
+Route::get('/course-details','CourseController@index')->name('course.details');
+Route::get('/course-notice','CourseController@notice')->name('course.notice');

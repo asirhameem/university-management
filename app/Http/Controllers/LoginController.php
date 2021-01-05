@@ -51,6 +51,7 @@ class LoginController extends Controller
             $request->session()->put('type', $user->type);
             $request->session()->put('name', $user->name);
             $request->session()->put('id',$user->uid);
+            $request->session()->put('teacherId',$teacher->tid);
             //return view('Teacher.teacherDash')->with('user',$user);
             return redirect()->route('teacher.dashboard');
         }else{

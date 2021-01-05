@@ -11,9 +11,17 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function content()
+    {
+        return view('Course.courseContent');
+    }
     public function index()
     {
-        //
+        return view('Course.courseDetails');
+    }
+    public function notice()
+    {
+        return view('Course.courseNotice');
     }
 
     /**

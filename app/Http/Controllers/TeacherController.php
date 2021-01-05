@@ -17,7 +17,11 @@ class TeacherController extends Controller
         //load dashboard.
         if(session()->has('email'))
         {
-            return view('Teacher.teacherDash');
+            $teacher = session()->get('teacherId')
+            $courses = DB::table('course')
+                        ->where('course.cteacher','=',$teacher)
+                        ->get();
+            return view('Teacher.teacherDash')->with('courses',$courses);
         }else{
             return redirect()->route('user.login');
         }
