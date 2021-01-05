@@ -2,26 +2,28 @@
 
 namespace App\Http\Middleware;
 
-// use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 use Closure;
+use Illuminate\Http\Request;
 
-class VerifySession 
+class VerifySession
 {
     /**
-     * The URIs that should be excluded from User verification.
+     * Handle an incoming request.
      *
-     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
      */
-
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
-
-        if($request->session()->has('email')){
-            return $next($request);
-       }else{
-           $request->session()->flash('msg', 'Invalid Resource Request, Please Login First.');
-           return redirect()->route('user.login');
-       }
+        if($request->session()->has('email'))
+		{
+			return $next($request);
+		}
+		else
+		{
+			$request->session()->flash('msg', 'invalid request');
+			return redirect('/login');
+		}
     }
-    
 }

@@ -2,14 +2,11 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Course extends Model
 {
-    //
-    protected $table = "course";
-    
     protected $primaryKey = "cid";
-    
-    public $timestamps = false;
+	public $timestamps = false;
 }

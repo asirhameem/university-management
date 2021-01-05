@@ -13,22 +13,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('User.registration');
-// });
+Route::get('/', function () {
+    return view('home.home');
+});
 
+Route::get('/login', 'loginController@index');
+Route::post('/login', 'loginController@verify');
+Route::get('/logout', 'logoutController@index');
 
-Route::get('/registration','UsersController@index');
-Route::post('/registration','UsersController@store')->name('user.register');
+Route::group(['middleware'=>['sess']], function(){
 
-Route::get('/login','UsersController@login')->name('user.login');
-Route::post('/login','LoginController@LoginNormal')->name('user.loginCheck');
-Route::get('/facebook','LoginController@LoadFacebook')->name('user.facebook');
-
-// Middleware 
-// Check for user login.
-// Route::group(['middleware'=>['session']], function(){
+    Route::get('/profile', 'homeController@index')->name('profile.index');
+    Route::get('/skill_upload', 'homeController@create')->name('profile.skillupload');
+    Route::post('/skill_upload', 'homeController@store');
+    Route::get('/show_skill/{id}', 'homeController@show')->name('profile.showskill');
+    Route::get('/details/{id}', 'homeController@details')->name('home.details');
+    Route::get('/edit/{id}', 'homeController@edit')->name('profile.edit');
+    Route::post('/edit/{id}', 'homeController@update');
+	Route::get('/delete/{id}', 'homeController@delete')->name('profile.delete');;
+    Route::post('/delete/{id}', 'homeController@destroy');
+    Route::get('/showorder/{id}', 'photoorderController@showorder')->name('profile.showorder');
+    Route::get('/courses', 'courseregController@courses')->name('course_registration.courses');
+    Route::get('/details/{id}', 'courseregController@details')->name('course_registration.details');
+    Route::get('/register/{id}', 'courseregController@register')->name('course_registration.register');
+    Route::post('/register/{id}', 'enrollController@enroll');
+    Route::get('/showregister/{email}', 'enrollController@showregister')->name('course_registration.showregister');
+    Route::get('/dropcourse/{id}', 'enrollController@dropcourse')->name('course_registration.dropcourse');
+    Route::post('/dropcourse/{id}', 'enrollController@drop');
     
-// });
-Route::get('/dashboard','TeacherController@index')->name('teacher.dashboard');
-Route::get('/profile','TeacherController@show')->name('teacher.profile');
+
+   
+});
+
+Route::get('/student_skill', 'homeController@display')->name('home.studentskill');
+Route::get('/student_details/{id}', 'homeController@details')->name('home.details');
+Route::get('/order/{id}', 'homeController@order')->name('home.order');
+Route::post('/order/{id}', 'photoorderController@orderproduct');

@@ -2,14 +2,11 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Enroll extends Model
 {
-    //
-    protected $table = "enroll";
-    
     protected $primaryKey = "enid";
-    
-    public $timestamps = false;
+	public $timestamps = false;
 }

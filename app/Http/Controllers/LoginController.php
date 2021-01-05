@@ -1,62 +1,44 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\DB;
 use App\User;
-class LoginController extends Controller
+
+class loginController extends Controller
 {
-    //
-
-    public function LoadFacebook()
-    {
-        return Socialite::driver('facebook')->redirect();
+    public function index(){
+    	return view('login.studentlogin');
     }
 
-    public function FacebookResponse()
-    {
-        $info = Socialite::driver('facebook')->user();
-        //print_r($user);
-        $user = new User();
-        $user->name = $info->name;
-        $user->username = '';
-        $user->password = '';
-        $user->email = $info->email;
-        $user->dp = $info->avatar;
-        $user->type = 'Teacher';
-        $user->status = 'Inactive';
-        $save = $user->save();
-        
-        if($save){
-            return redirect()->route('teacher.dashboard');
-        }else{
-            return redirect()->route('user.login');
-        }
-        
-    }
+    public function verify(Request $req){
 
-    public function LoginNormal(Request $request)
-    {
-        $user  = User::where('email', $request->email)
-                        ->where('password', $request->password)
-                        ->first();
-        $teacher = DB::table('teacher')
-                        ->where('teacher.uid','=',$user->uid)
-                        ->first();
-        if($user)
-        {
-            $request->session()->put('email', $user->email);
-            $request->session()->put('type', $user->type);
-            $request->session()->put('name', $user->name);
-            $request->session()->put('id',$user->uid);
-            //return view('Teacher.teacherDash')->with('user',$user);
-            return redirect()->route('teacher.dashboard');
-        }else{
-            $request->session()->flash('msg', 'Please provide valid Email & Password');
-    		return redirect()->route('user.login');
-        }
-    }
 
+		$user = DB::table('Users')
+                    ->where('email', $req->email)
+					->where('password', $req->password)
+					->get('uid');
+
+		$type = DB::table('Users')
+					->where('email', $req->email)
+					->where('password', $req->password)
+					 ->get('type');
+		
+				/*foreach($type as $usertype)
+				{
+					$usertype= $usertype->type ;
+		
+				}	*/		
+					
+			if(count($user) > 0){
+
+			$req->session()->put('email', $req->email);
+			$req->session()->put('uid', $user[0]->uid);
+            return redirect('/profile');
+			
+    	}else{
+			$req->session()->flash('msg', 'invalid username or password');
+    		return redirect('/login');
+    	}
+    }
 }
