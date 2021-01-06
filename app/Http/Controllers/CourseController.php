@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Content;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Notice;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
+use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Writer\Pdf as WriterPdf;
 
 class CourseController extends Controller
 {
@@ -40,19 +44,44 @@ class CourseController extends Controller
 
         return view('Course.courseDetails')->with('details', $details)->with('students', $students);
     }
-    public function courseNotice()
+    public function courseNotice($id)
     {
-        return view('Course.courseNotice');
+        $notices = DB::table('notice')
+                        ->where('cid',$id)
+                        ->get();
+        return view('Course.courseNotice')->with('notices',$notices)->with('id',$id);
     }
 
+    public function noticeStore(Request $request,$id)
+    {
+        $notice = new Notice();
+        $notice->noticename = $request->name;
+        $notice->noticedescription = $request->about;
+        $notice->cid = $id;
+        $notice->save();
+
+        return redirect()->back();
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function export($id)
     {
-        //
+        //excel
+        $teacher = session()->get('teacherId');
+        $students = DB::table('enroll')
+            ->join('student', 'enroll.sid', '=', 'student.student_id')
+            ->join('users', 'student.uid', '=', 'users.uid')
+            ->select('enroll.*', 'student.*', 'users.*')
+            ->where('users.type', '=', 'Student')
+            ->where('users.status', '=', 'Active')
+            ->where('enroll.courseid', '=', $id)
+            ->where('enroll.instructorid', '=', $teacher)
+            ->get();
+        $pdf = PDF::loadView('Course.courseDetailsTable',compact('students'));
+        return $pdf->download('itsolutionstuff.pdf');
     }
 
     public function download($path) {

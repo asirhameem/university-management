@@ -37,7 +37,7 @@ Course Details
                     <polyline points="12 5 19 12 12 19" />
                 </svg>
             </a>
-            <a href="" class="flex bg-blue-500 rounded-lg font-bold text-white text-center mt-2 mx-3 px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6">
+            <a href="/course-notice/{{$details->cid}}" class="flex bg-blue-500 rounded-lg font-bold text-white text-center mt-2 mx-3 px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6">
                 Upload Course Notice
                 <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 w-6 stroke-current text-white stroke-2" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12" />
@@ -79,7 +79,7 @@ Course Details
                     </tbody>
                 </table>
             </div>
-            <a href="" class="flex bg-blue-500 rounded-lg font-bold text-white text-center px-4 py-3 mx-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6">
+            <a href="/pdf/{{$details->cid}}" class="flex bg-blue-500 rounded-lg font-bold text-white text-center px-4 py-3 mx-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6">
                 Click here
                 <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 w-6 stroke-current text-white stroke-2" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12" />

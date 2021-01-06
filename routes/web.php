@@ -37,5 +37,7 @@ Route::post('/course-content/{id}','CourseController@store')->name('course.conte
 Route::get('/course-details/{id}','CourseController@courseDetails')->name('course.details');
 Route::get('/course-notice/{id}','CourseController@courseNotice')->name('course.notice');
 Route::get('/download/{path}','CourseController@download');
+Route::post('/course-notice/{id}','CourseController@noticeStore');
+Route::get('/pdf/{id}','CourseController@export');
 
 Route::post('/profile','TeacherController@update')->name('teacher.update');
