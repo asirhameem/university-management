@@ -35,6 +35,8 @@ Route::get('/courses','TeacherController@allcourses');
         Route::get('/course-content/{id}','CourseController@courseContent')->name('course.content');
         Route::post('/course-content/{id}','CourseController@store')->name('course.content');
         Route::get('/course-details/{id}','CourseController@courseDetails')->name('course.details');
+        Route::post('/course-details/{id}','CourseController@courseUpdate');
+
         Route::get('/course-notice/{id}','CourseController@courseNotice')->name('course.notice');
         Route::get('/student-detail/{id}','TeacherController@studentDetails')->name('student.get');
         Route::post('/student-detail/{id}','TeacherController@updateDetails')->name('student.update');
@@ -47,6 +49,7 @@ Route::get('/courses','TeacherController@allcourses');
     Route::get('/download/{path}','CourseController@download');
     Route::post('/course-notice/{id}','CourseController@noticeStore');
     Route::get('/pdf/{id}','CourseController@export');
+    Route::get('/accountpdf/{id}','TeacherController@pdfexport');
     Route::post('/search','TeacherController@search');
     
    

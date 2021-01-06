@@ -44,12 +44,40 @@ class CourseController extends Controller
 
         return view('Course.courseDetails')->with('details', $details)->with('students', $students);
     }
+
+    public function courseUpdate(Request $request,$id)
+    {
+        $request->validate([
+            'cname'=>'required|min:3',
+            
+            'cstart'=>'required',
+            'cend' => 'required',
+            'cdesc' => 'required',
+             ]);
+        $course = DB::table('course')
+                    ->where('cid',$id)
+                    ->update([
+                        'cname' => $request->cname,
+                        'cstart' => $request->cstart,
+                        'cend' => $request->cend,
+                        'cdescription' => $request->cdesc
+
+                    ]);
+        return redirect()->back();
+        
+    }
     public function courseNotice($id)
     {
         $notices = DB::table('notice')
                         ->where('cid',$id)
                         ->get();
         return view('Course.courseNotice')->with('notices',$notices)->with('id',$id);
+        //return response($notices);
+    }
+
+    public function noticeView()
+    {
+        return view('Course.courseNotice');
     }
 
     public function noticeStore(Request $request,$id)

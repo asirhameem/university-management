@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use GuzzleHttp\Client;
 
 class TeacherController extends Controller
@@ -131,15 +132,31 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function account()
+    public function account($id)
     {
         //
+
         $account = DB::table('payment')
+                        ->where('sid',$id)
                         ->get();
         return response($account);
         //dd($account);
 
     }
+
+
+    public function pdfexport($id)
+    {
+        //excel
+        
+        $accounts = DB::table('payment')
+                        ->where('sid',$id)
+                        ->get();
+           
+        $pdf = PDF::loadView('Teacher.teacherStudentAccount',compact('accounts'));
+        return $pdf->download('accountstuff.pdf');
+    }
+
 
     public function banusers()
     {

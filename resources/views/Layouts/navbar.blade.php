@@ -38,8 +38,8 @@
               <a href="{{route('banned.users')}}" class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800">
                 Banned User List
               </a>
-              <a href="#pablo" class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800">
-                Something else here
+              <a href="/courses" class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800">
+                Offered Courses
               </a>
               <div class="h-0 my-2 border border-solid border-t-0 border-gray-900 opacity-25"></div>
               <a href="{{route('user.logout')}}" class="text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800">

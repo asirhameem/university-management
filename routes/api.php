@@ -19,5 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/account','TeacherController@account');
+Route::get('/account/{id}','TeacherController@account');
 

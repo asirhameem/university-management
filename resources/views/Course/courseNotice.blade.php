@@ -58,15 +58,14 @@ Course Notice
 
     <div class="container">
         <table class="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
-            <thead class="text-white">
+            
                 <tr class="bg-teal-400 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
                     <th class="p-3 text-left">Name</th>
                     <th class="p-3 text-left">Description</th>
                     
                 </tr>
                 
-            </thead>
-            <tbody class="flex-1 sm:flex-none">
+            
             @forelse($notices as $notice)
                 <tr class="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
                     <td class="border-grey-light border hover:bg-gray-100 p-3">{{$notice->noticename}}</td>
@@ -75,7 +74,7 @@ Course Notice
                 </tr>
             @empty
             @endforelse
-            </tbody>
+           
         </table>
     </div>
 </div>
